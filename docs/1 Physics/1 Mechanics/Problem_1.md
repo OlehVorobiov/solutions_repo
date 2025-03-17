@@ -41,8 +41,9 @@ A projectile moves under the influence of gravity, meaning its horizontal and ve
 
 This equation comes from the definition of constant velocity motion:
 
-- The horizontal component of velocity is \( v_0 \cos(\theta) \) (initial velocity times the cosine of the launch angle).
-- There is no acceleration in the x-direction (ignoring air resistance), so distance is simply velocity times time.
+The horizontal component of velocity is \( v_0 \cos(\theta) \) (initial velocity times the cosine of the launch angle).
+
+There is no acceleration in the x-direction (ignoring air resistance), so distance is simply velocity times time.
 
 
 * $y(t) = v_0\sin(θ)t-\frac{1}{2}gt^2$ - vertical displacement
@@ -58,11 +59,115 @@ Since gravity acts downward with acceleration \( g \), we replace \( a \) with \
 
 From the two formulas a single formula for the distance can be derived:
 
-* $R = \frac{v_0^2\sin(2θ)}{g}$ - range formula for ideal conditions
+###### 1. Determine the Total Time of Flight
+
+The vertical displacement equation for projectile motion is:  
+   $$
+   y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+   $$
+Since the projectile returns to the ground, we set \( y = 0 \) and solve for \( t \):  
+   $$
+   0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+   $$  
+Factor out \( t \):  
+   $$
+   t \left( v_0 \sin(\theta) - \frac{1}{2} g t \right) = 0
+   $$  
+This gives two solutions:  
+   $$
+   t = 0  \quad \text{(initial time)}
+   $$  
+   $$
+   t = \frac{2 v_0 \sin(\theta)}{g}
+   $$  
+Thus, the **total time of flight** is:  
+   $$
+   T = \frac{2 v_0 \sin(\theta)}{g}
+   $$
+
+###### 2. Use the Horizontal Displacement Formula
+
+The horizontal displacement is given by:  
+   $$
+   x = v_0 \cos(\theta) t
+   $$  
+Since range \( R \) is the total horizontal distance when the projectile lands, we substitute \( t = T \):
+
+   $$
+   R = v_0 \cos(\theta) \cdot \frac{2 v_0 \sin(\theta)}{g}
+   $$
+
+###### 3. Simplify Using Trigonometric Identity
+
+Using the identity \( \sin(2\theta) = 2 \sin(\theta) \cos(\theta) \), we get:
+
+   $$
+   R = \frac{v_0^2 \sin(2\theta)}{g}
+   $$
+
+###### Conclusion
+
+Thus, the **range formula** for projectile motion is:  
+   $$
+   R = \frac{v_0^2 \sin(2\theta)}{g}
+   $$
 
 ## Analyzing the Range with regard to Angle
 
 To analyze, at what angle does the object cross the largest distance, one can calculate the Range for different angles.
 
-Let's take the angles $30°, 45°$ and $60°$
+Let's take the angles $15°, 30°, 45°, 60°$ and $75°$
 
+For this example, let's take the initial velocity for 10 m/s.
+
+###### $15°$
+
+$$
+R = \frac{v_0^2 \sin(2*30°)}{g} = 5 m
+$$
+
+
+###### $30°$
+
+$$
+R = \frac{v_0^2 \sin(2*30°)}{g} = 8,66 m
+$$
+
+
+###### $45°$
+
+$$
+R = \frac{v_0^2 \sin(2*30°)}{g} = 10 m
+$$
+
+###### $60°$
+
+$$
+R = \frac{v_0^2 \sin(2*30°)}{g} = 8,66 m
+$$
+
+
+###### $75°$
+
+$$
+R = \frac{v_0^2 \sin(2*30°)}{g} = 5 m
+$$
+
+
+As a result, the object increases it's range of flight when the angle approaches 45°. The further the angle from this number, the less distance it travels.
+
+However, angle is not a single parameter that determines the range - there is also velocity and gravitational acceleration:
+
+1. Velocity is proportional to the range, as it stands in the numerator of the equation. The higher the velocity - the higher the distance that the object is able to travel.
+
+2. Gravitational acceleration is antiproportional to the range, as it stands in the denomenator of the equation. The higher the gravitational acceleration - the faster the object is gonna fall, and hence, the less distance it will be able to travel.
+
+## Practical applications
+
+Projectile motion lies at the foundation of mechanics and has countless applications in real life. It can be seen in something as simple as children throwing snowballs in winter or as complex as launching a missile to another country. However, real-life applications are more complex than a simple formula. We must account for air resistance, uneven terrain, and other forces that could affect the flight.
+
+For example, air resistance slows down the object by absorbing some of its energy. Additionally, an object may land higher or lower than its initial position depending on the terrain, which would influence its flight range.
+
+## Implementation
+
+![alt text](image.png)
