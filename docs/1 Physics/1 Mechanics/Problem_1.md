@@ -170,4 +170,6 @@ For example, air resistance slows down the object by absorbing some of its energ
 
 ## Implementation
 
-![alt text](C:\Users\olegv\Desktop\UEHS hw\solutions_repo\docs\1 Physics\1 Mechanics)
+The following code shows the trajectory of the object depending on the angle:
+
+https://github.com/OlehVorobiov/solutions_repo/blob/main/docs/1%20Physics/1%20Mechanics/Implementation.ipynb
