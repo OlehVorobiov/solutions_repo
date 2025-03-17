@@ -149,14 +149,10 @@
 <li><span class="arithmatex">\(x(t) = v_0\cos(θ)t\)</span> - horizontal displacement</li>
 </ul>
 <p>This equation comes from the definition of constant velocity motion:</p>
-<ul>
-<li>The horizontal component of velocity is <span class="arithmatex">\( v_0 \cos(\theta) \)</span> (initial velocity times the cosine of the launch angle).</li>
-<li>
+<p>The horizontal component of velocity is <span class="arithmatex">\( v_0 \cos(\theta) \)</span> (initial velocity times the cosine of the launch angle).</p>
 <p>There is no acceleration in the x-direction (ignoring air resistance), so distance is simply velocity times time.</p>
-</li>
-<li>
-<p><span class="arithmatex">\(y(t) = v_0\sin(θ)t-\frac{1}{2}gt^2\)</span> - vertical displacement</p>
-</li>
+<ul>
+<li><span class="arithmatex">\(y(t) = v_0\sin(θ)t-\frac{1}{2}gt^2\)</span> - vertical displacement</li>
 </ul>
 <p>This equation follows from the kinematic equation for motion under constant acceleration:</p>
 <div class="arithmatex">\[
@@ -164,12 +160,88 @@ y = v_0 t + \frac{1}{2} a t^2
 \]</div>
 <p>Since gravity acts downward with acceleration <span class="arithmatex">\( g \)</span>, we replace <span class="arithmatex">\( a \)</span> with <span class="arithmatex">\( -g \)</span>, leading to the negative term.</p>
 <p>From the two formulas a single formula for the distance can be derived:</p>
-<ul>
-<li><span class="arithmatex">\(R = \frac{v_0^2\sin(2θ)}{g}\)</span> - range formula for ideal conditions</li>
-</ul>
+<h6 id="1-determine-the-total-time-of-flight">1. Determine the Total Time of Flight</h6>
+<p>The vertical displacement equation for projectile motion is:<br/>
+   $$
+   y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+   $$
+Since the projectile returns to the ground, we set <span class="arithmatex">\( y = 0 \)</span> and solve for <span class="arithmatex">\( t \)</span>:<br/>
+   $$
+   0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+   $$<br/>
+Factor out <span class="arithmatex">\( t \)</span>:<br/>
+   $$
+   t \left( v_0 \sin(\theta) - \frac{1}{2} g t \right) = 0
+   $$<br/>
+This gives two solutions:<br/>
+   $$
+   t = 0  \quad \text{(initial time)}
+   $$<br/>
+   $$
+   t = \frac{2 v_0 \sin(\theta)}{g}
+   $$<br/>
+Thus, the <strong>total time of flight</strong> is:<br/>
+   $$
+   T = \frac{2 v_0 \sin(\theta)}{g}
+   $$</p>
+<h6 id="2-use-the-horizontal-displacement-formula">2. Use the Horizontal Displacement Formula</h6>
+<p>The horizontal displacement is given by:<br/>
+   $$
+   x = v_0 \cos(\theta) t
+   $$<br/>
+Since range <span class="arithmatex">\( R \)</span> is the total horizontal distance when the projectile lands, we substitute <span class="arithmatex">\( t = T \)</span>:</p>
+<p>$$
+   R = v_0 \cos(\theta) \cdot \frac{2 v_0 \sin(\theta)}{g}
+   $$</p>
+<h6 id="3-simplify-using-trigonometric-identity">3. Simplify Using Trigonometric Identity</h6>
+<p>Using the identity <span class="arithmatex">\( \sin(2\theta) = 2 \sin(\theta) \cos(\theta) \)</span>, we get:</p>
+<p>$$
+   R = \frac{v_0^2 \sin(2\theta)}{g}
+   $$</p>
+<h6 id="conclusion">Conclusion</h6>
+<p>Thus, the <strong>range formula</strong> for projectile motion is:<br/>
+   $$
+   R = \frac{v_0^2 \sin(2\theta)}{g}
+   $$</p>
 <h2 id="analyzing-the-range-with-regard-to-angle">Analyzing the Range with regard to Angle</h2>
 <p>To analyze, at what angle does the object cross the largest distance, one can calculate the Range for different angles.</p>
-<p>Let's take the angles <span class="arithmatex">\(30°, 45°\)</span> and <span class="arithmatex">\(60°\)</span></p>
+<p>Let's take the angles <span class="arithmatex">\(15°, 30°, 45°, 60°\)</span> and <span class="arithmatex">\(75°\)</span></p>
+<p>For this example, let's take the initial velocity for 10 m/s.</p>
+<h6 id="15"><span class="arithmatex">\(15°\)</span></h6>
+<div class="arithmatex">\[
+R = \frac{v_0^2 \sin(2*30°)}{g} = 5 m
+\]</div>
+<h6 id="30"><span class="arithmatex">\(30°\)</span></h6>
+<div class="arithmatex">\[
+R = \frac{v_0^2 \sin(2*30°)}{g} = 8,66 m
+\]</div>
+<h6 id="45"><span class="arithmatex">\(45°\)</span></h6>
+<div class="arithmatex">\[
+R = \frac{v_0^2 \sin(2*30°)}{g} = 10 m
+\]</div>
+<h6 id="60"><span class="arithmatex">\(60°\)</span></h6>
+<div class="arithmatex">\[
+R = \frac{v_0^2 \sin(2*30°)}{g} = 8,66 m
+\]</div>
+<h6 id="75"><span class="arithmatex">\(75°\)</span></h6>
+<div class="arithmatex">\[
+R = \frac{v_0^2 \sin(2*30°)}{g} = 5 m
+\]</div>
+<p>As a result, the object increases it's range of flight when the angle approaches 45°. The further the angle from this number, the less distance it travels.</p>
+<p>However, angle is not a single parameter that determines the range - there is also velocity and gravitational acceleration:</p>
+<ol>
+<li>
+<p>Velocity is proportional to the range, as it stands in the numerator of the equation. The higher the velocity - the higher the distance that the object is able to travel.</p>
+</li>
+<li>
+<p>Gravitational acceleration is antiproportional to the range, as it stands in the denomenator of the equation. The higher the gravitational acceleration - the faster the object is gonna fall, and hence, the less distance it will be able to travel.</p>
+</li>
+</ol>
+<h2 id="practical-applications">Practical applications</h2>
+<p>Projectile motion lies at the foundation of mechanics and has countless applications in real life. It can be seen in something as simple as children throwing snowballs in winter or as complex as launching a missile to another country. However, real-life applications are more complex than a simple formula. We must account for air resistance, uneven terrain, and other forces that could affect the flight.</p>
+<p>For example, air resistance slows down the object by absorbing some of its energy. Additionally, an object may land higher or lower than its initial position depending on the terrain, which would influence its flight range.</p>
+<h2 id="implementation">Implementation</h2>
+<p><img alt="alt text" src="image.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
