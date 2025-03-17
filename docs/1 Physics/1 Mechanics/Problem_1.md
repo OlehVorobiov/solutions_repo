@@ -50,6 +50,3 @@ Let's take the angles $30°, 45°$ and $60°$
 
 C:\Users\olegv\Desktop\UEHS hw\solutions_repo\docs\1 Physics\1 Mechanics\Problem_1.md
 
-
-
-
