@@ -170,4 +170,4 @@ For example, air resistance slows down the object by absorbing some of its energ
 
 ## Implementation
 
-![alt text](image.png)
+![alt text](C:\Users\olegv\Desktop\UEHS hw\solutions_repo\docs\1 Physics\1 Mechanics)
