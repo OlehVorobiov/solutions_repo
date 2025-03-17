@@ -44,7 +44,17 @@ This equation comes from the definition of constant velocity motion:
 - The horizontal component of velocity is \( v_0 \cos(\theta) \) (initial velocity times the cosine of the launch angle).
 - There is no acceleration in the x-direction (ignoring air resistance), so distance is simply velocity times time.
 
+
 * $y(t) = v_0\sin(θ)t-\frac{1}{2}gt^2$ - vertical displacement
+
+This equation follows from the kinematic equation for motion under constant acceleration:
+
+$$
+y = v_0 t + \frac{1}{2} a t^2
+$$
+
+Since gravity acts downward with acceleration \( g \), we replace \( a \) with \( -g \), leading to the negative term.
+
 
 From the two formulas a single formula for the distance can be derived:
 
