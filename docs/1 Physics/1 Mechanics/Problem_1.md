@@ -29,6 +29,8 @@ $9.8 \frac{m}{s^2}$ (on Earth).
 This law states that for every action, there is an equal and opposite reaction. In projectile motion, this law isn't as directly involved in the motion of the object but can be observed in other interactions.
 
 ### Motion Components
+A projectile moves under the influence of gravity, meaning its horizontal and vertical motions are independent except for the time variable. The acceleration due to gravity acts only in the vertical direction, making the motion two-dimensional.
+
 **Horizontal Motion**: The object moves horizontally with a constant velocity (since there is no force acting horizontally, assuming no air resistance).
 
 **Vertical Motion**: The object moves vertically with constant acceleration due to gravity, starting with an initial velocity in the upward direction (if thrown upward) or zero velocity (if dropped).
@@ -36,6 +38,12 @@ This law states that for every action, there is an equal and opposite reaction. 
 ### Main formulas:
 
 * $x(t) = v_0\cos(θ)t$ - horizontal displacement
+
+This equation comes from the definition of constant velocity motion:
+
+- The horizontal component of velocity is \( v_0 \cos(\theta) \) (initial velocity times the cosine of the launch angle).
+- There is no acceleration in the x-direction (ignoring air resistance), so distance is simply velocity times time.
+
 * $y(t) = v_0\sin(θ)t-\frac{1}{2}gt^2$ - vertical displacement
 
 From the two formulas a single formula for the distance can be derived:
@@ -48,4 +56,3 @@ To analyze, at what angle does the object cross the largest distance, one can ca
 
 Let's take the angles $30°, 45°$ and $60°$
 
-C:\Users\olegv\Desktop\UEHS hw\solutions_repo\docs\1 Physics\1 Mechanics\Problem_1.md
