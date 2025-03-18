@@ -173,3 +173,10 @@ For example, air resistance slows down the object by absorbing some of its energ
 The following code shows the trajectory of the object depending on the angle:
 
 https://github.com/OlehVorobiov/solutions_repo/blob/main/docs/1%20Physics/1%20Mechanics/Implementation.ipynb
+
+The representation clearly shows the same results as the analysis: the longest distance traveled by the object happens at 45°.
+
+
+## Conclusion
+
+In this report, we investigated projectile motion, explored its theoretical foundation, analyzed the function's range, discussed practical applications, and implemented its trajectory using Python code.
