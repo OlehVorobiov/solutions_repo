@@ -156,7 +156,6 @@ $$
 
 As a result, the object increases it's range of flight when the angle approaches 45°. The further the angle from this number, the less distance it travels.
 
-![Fork Repository](docs/_pics/image.png)
 
 However, angle is not a single parameter that determines the range - there is also velocity and gravitational acceleration:
 
