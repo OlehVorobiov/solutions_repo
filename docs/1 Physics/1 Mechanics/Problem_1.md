@@ -158,11 +158,49 @@ As a result, the object increases it's range of flight when the angle approaches
 
 ![Alt text](../../_pics/image.png)
 
+We can check the obtained result by plotting the flight distance of the thrown object with respect to the angle it has been thrown under:
+
+![Alt text](../../_pics/Range to Angle.png)
+
 However, angle is not a single parameter that determines the range - there is also velocity and gravitational acceleration:
 
-1. Velocity is proportional to the range, as it stands in the numerator of the equation. The higher the velocity - the higher the distance that the object is able to travel.
+- Velocity is proportional to the range, as it stands in the numerator of the equation. The higher the velocity - the higher the distance that the object is able to travel.
 
-2. Gravitational acceleration is antiproportional to the range, as it stands in the denomenator of the equation. The higher the gravitational acceleration - the faster the object is gonna fall, and hence, the less distance it will be able to travel.
+For example, let's compare the initial velocity of the thrown object of 10 m/s and 20 m/s by putting them into the formula and plotting their trajectories. We will use the same angle for both instances of 45°.
+
+$10 m/s$
+
+$$
+R = \frac{10^2 \sin(2*45°)}{g} = 10m
+$$
+
+
+$20 m/s$
+
+$$
+R = \frac{20^2 \sin(2*45°)}{g} = 40 m
+$$
+
+
+![Alt text](../../_pics/Velocity.png)
+
+- Gravitational acceleration is antiproportional to the range, as it stands in the denomenator of the equation. The higher the gravitational acceleration - the faster the object is gonna fall, and hence, the less distance it will be able to travel.
+
+To visualise that, we can again try to plot different trajectories, but this time changing only the gravitational acceleration. The velocity and the angle are going to remain the same: 10 m/s and 45° respectively:
+
+![Alt text](../../_pics/Gravity.png)
+
+The picture depicts the trajectory the object would have if it was thrown on the surface of different celestial bodies, namely:
+
+- Earth
+
+- Moon
+
+- Mars
+
+- Jupiter
+
+As Jupiter is the most massive among these bodies, its gravitational force is also the largest which means that the range is the smallest, while the moon is the lightest among these bodies, and the range is respectively the biggest.
 
 ## Practical applications
 
