@@ -157,6 +157,7 @@ $$
 As a result, the object increases it's range of flight when the angle approaches 45°. The further the angle from this number, the less distance it travels.
 
 
+
 However, angle is not a single parameter that determines the range - there is also velocity and gravitational acceleration:
 
 1. Velocity is proportional to the range, as it stands in the numerator of the equation. The higher the velocity - the higher the distance that the object is able to travel.
