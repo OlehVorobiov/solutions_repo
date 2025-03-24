@@ -123,7 +123,7 @@ For this example, let's take the initial velocity for 10 m/s.
 ###### $15°$
 
 $$
-R = \frac{v_0^2 \sin(2*30°)}{g} = 5 m
+R = \frac{v_0^2 \sin(2*15°)}{g} = 5 m
 $$
 
 
@@ -137,20 +137,20 @@ $$
 ###### $45°$
 
 $$
-R = \frac{v_0^2 \sin(2*30°)}{g} = 10 m
+R = \frac{v_0^2 \sin(2*45°)}{g} = 10 m
 $$
 
 ###### $60°$
 
 $$
-R = \frac{v_0^2 \sin(2*30°)}{g} = 8,66 m
+R = \frac{v_0^2 \sin(2*60°)}{g} = 8,66 m
 $$
 
 
 ###### $75°$
 
 $$
-R = \frac{v_0^2 \sin(2*30°)}{g} = 5 m
+R = \frac{v_0^2 \sin(2*75°)}{g} = 5 m
 $$
 
 
