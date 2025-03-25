@@ -120,6 +120,86 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h1 id="investigating-the-dynamics-of-a-forced-damped-pendulum">Investigating the Dynamics of a Forced Damped Pendulum</h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="background-motivation">Background &amp; Motivation</h3>
+<p>A forced damped pendulum is a type of pendulum that experiences both friction (damping) and an external force that pushes it at regular intervals. Unlike a simple pendulum that just swings back and forth, this system can show a wide range of behaviors, from smooth and predictable motion to completely chaotic swings. This makes it an interesting and important topic in physics.</p>
+<p>Studying this system helps us understand real-world situations where similar dynamics appear. For example, bridges and buildings that experience repeated forces from wind or earthquakes, electrical circuits with alternating currents, and even climate models where periodic forces influence weather patterns all share similarities with the forced damped pendulum. By learning how this system behaves, we can gain insights into many different areas of science and engineering.</p>
+<h3 id="objective-of-the-report">Objective of the Report</h3>
+<p>This report will explore the forced damped pendulum from different angles:</p>
+<ul>
+<li>
+<p>Theoretical Foundation: We'll look at the main equation that describes its motion and see how it behaves under different conditions.</p>
+</li>
+<li>
+<p>Analysis of Dynamics: We'll explore how changing factors like friction, the strength of the external force, and its frequency affect the pendulum's motion, including how it can become chaotic.</p>
+</li>
+<li>
+<p>Practical Applications: We'll discuss real-world systems that work similarly, such as energy harvesting devices and vibration control systems.</p>
+</li>
+<li>
+<p>Computational Implementation: We'll create a computer simulation to visualize how the pendulum moves under different conditions and analyze its behavior using tools like phase diagrams and Poincaré sections.</p>
+</li>
+</ul>
+<p>By the end of this report, we should have a clearer understanding of how the forced damped pendulum works and why it is relevant to various fields of science and engineering.</p>
+<h2 id="theoretical-foundation">Theoretical Foundation</h2>
+<h3 id="simple-pendulum">Simple Pendulum</h3>
+<p>To understand forced damping pendulum, let's start with a simple pendulum to build up on that, gradually understanding phenomena of "damping" and "forcing"</p>
+<p><img alt="Alt text" src="../../../_pics/AnimatedPendulum.gif"/></p>
+<p>A simple pendulum is a mass (called the bob) attached to a string or rod that swings back and forth under the influence of gravity. The key features of a simple pendulum are:</p>
+<ul>
+<li>
+<p>The bob is usually a small, dense object like a metal ball.</p>
+</li>
+<li>
+<p>The string or rod is ideally massless and inextensible (it doesn’t stretch).</p>
+</li>
+<li>
+<p>The pendulum moves in a plane and oscillates around a fixed point.</p>
+</li>
+</ul>
+<p>When displaced from its equilibrium position and released, the pendulum swings back and forth in a periodic motion.</p>
+<h4 id="how-does-it-work">How does it work?</h4>
+<p>The motion of a simple pendulum can be broken down using physics concepts like circular motion and gravitation.</p>
+<p>The forces on the pendulum bob are:</p>
+<ul>
+<li>
+<p><strong>Gravity</strong>: Acts downward with magnitude <span class="arithmatex">\( mg \)</span>.</p>
+</li>
+<li>
+<p><strong>Tension (T)</strong>: Acts along the string, providing a radial force.</p>
+</li>
+</ul>
+<p>$$$$</p>
+<ol>
+<li>
+<p>Gravity can be decomposed into:</p>
+<ul>
+<li>
+<p><strong>Radial component</strong>: <span class="arithmatex">\( mg \cos\theta \)</span> - Points toward the pivot and is balanced by the tension in the string.</p>
+</li>
+<li>
+<p><strong>Tangential component</strong>: <span class="arithmatex">\( mg \sin\theta \)</span> (causes oscillation) - Acts along the direction of motion and is responsible for the pendulum's oscillation.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Circular Motion Equations:</p>
+</li>
+</ol>
+<p>Since the pendulum moves along a circular arc of radius <span class="arithmatex">\( L \)</span> (length of string), the radial and tangential forces obey:</p>
+<p><strong>Radial force equation:</strong>
+$$
+T - mg \cos\theta = m \frac{v^2}{L}
+$$</p>
+<p><strong>Tangential force equation (Newton's Second Law in tangential direction):</strong>
+$$
+ m \frac{d^2s}{dt^2} = -mg \sin\theta
+$$
+Since arc length <span class="arithmatex">\( s \)</span> is related to angular displacement <span class="arithmatex">\( \theta \)</span> by <span class="arithmatex">\( s = L\theta \)</span>, this simplifies to:
+$$
+\frac{d^2\theta}{dt^2} + \frac{g}{L} \sin\theta = 0
+$$</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
