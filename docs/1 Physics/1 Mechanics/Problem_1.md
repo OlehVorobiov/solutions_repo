@@ -208,9 +208,18 @@ Projectile motion lies at the foundation of mechanics and has countless applicat
 
 For example, air resistance slows down the object by absorbing some of its energy. Additionally, an object may land higher or lower than its initial position depending on the terrain, which would influence its flight range.
 
+A model of the influence of the terrain:
+
+![Alt text](../../_pics/Ground.png)
+
 ## Implementation
 
 The following code shows the trajectory of the object depending on the angle:
+
+
+Try tweaking the velocity, angle, and gravity to see how the trajectory changes!
+
+<iframe src="https://github.com/OlehVorobiov/solutions_repo/blob/main/docs/1%20Physics/1%20Mechanics/Board.html" width="100%" height="600px" frameborder="0"></iframe>
 
 https://github.com/OlehVorobiov/solutions_repo/blob/main/docs/1%20Physics/1%20Mechanics/Implementation.ipynb
 
