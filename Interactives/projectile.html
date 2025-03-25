@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Projectile Motion</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .slider-container { margin: 10px 0; }
+        #plot { width: 100%; height: 400px; }
+    </style>
+</head>
+<body>
+    <h2>Interactive Projectile Motion</h2>
+    <div class="slider-container">
+        <label for="v0">Initial Velocity (m/s): <span id="v0-value">10</span></label><br>
+        <input type="range" id="v0" min="1" max="50" value="10" step="1" style="width: 300px;">
+    </div>
+    <div class="slider-container">
+        <label for="theta">Angle (degrees): <span id="theta-value">45</span></label><br>
+        <input type="range" id="theta" min="0" max="90" value="45" step="1" style="width: 300px;">
+    </div>
+    <div class="slider-container">
+        <label for="g">Gravity (m/s²): <span id="g-value">9.8</span></label><br>
+        <input type="range" id="g" min="1" max="20" value="9.8" step="0.1" style="width: 300px;">
+    </div>
+    <div id="plot"></div>
+
+    <script>
+        const v0Slider = document.getElementById('v0');
+        const thetaSlider = document.getElementById('theta');
+        const gSlider = document.getElementById('g');
+        const v0Value = document.getElementById('v0-value');
+        const thetaValue = document.getElementById('theta-value');
+        const gValue = document.getElementById('g-value');
+        const plotDiv = document.getElementById('plot');
+
+        function updatePlot() {
+            const v0 = parseFloat(v0Slider.value);
+            const theta = parseFloat(thetaSlider.value) * Math.PI / 180;
+            const g = parseFloat(gSlider.value);
+
+            const tFlight = 2 * v0 * Math.sin(theta) / g;
+            const t = Array.from({length: 1000}, (_, i) => i * tFlight / 999);
+
+            const x = t.map(t => v0 * Math.cos(theta) * t);
+            const y = t.map(t => v0 * Math.sin(theta) * t - 0.5 * g * t * t);
+
+            v0Value.textContent = v0;
+            thetaValue.textContent = thetaSlider.value;
+            gValue.textContent = g;
+
+            const trace = {
+                x: x,
+                y: y,
+                mode: 'lines',
+                name: `v0=${v0} m/s, θ=${thetaSlider.value}°, g=${g} m/s²`,
+                line: { color: 'blue' }
+            };
+
+            const layout = {
+                title: 'Projectile Motion Trajectory',
+                xaxis: { title: 'Distance (m)', range: [0, Math.max(...x) * 1.2] },
+                yaxis: { title: 'Height (m)', range: [0, Math.max(...y) * 1.2] },
+                margin: { t: 50, b: 50, l: 50, r: 50 }
+            };
+
+            Plotly.newPlot(plotDiv, [trace], layout);
+        }
+
+        updatePlot();
+        v0Slider.addEventListener('input', updatePlot);
+        thetaSlider.addEventListener('input', updatePlot);
+        gSlider.addEventListener('input', updatePlot);
+    </script>
+</body>
+</html>
