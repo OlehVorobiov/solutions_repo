@@ -214,16 +214,12 @@ A model of the influence of the terrain:
 
 ## Implementation
 
-The following code shows the trajectory of the object depending on the angle:
+The following representation allows to built your own trajectory based on the entered parameters.
+Try tweaking the velocity, angle, and gravity to see how the trajectory changes:
 
-
-Try tweaking the velocity, angle, and gravity to see how the trajectory changes!
-
-<iframe src="https://github.com/OlehVorobiov/solutions_repo/blob/main/docs/1%20Physics/1%20Mechanics/Board.html" width="100%" height="600px" frameborder="0"></iframe>
-
-https://github.com/OlehVorobiov/solutions_repo/blob/main/docs/1%20Physics/1%20Mechanics/Implementation.ipynb
-
-The representation clearly shows the same results as the analysis: the longest distance traveled by the object happens at 45°.
+<div style="position: relative; width: 740px; height: 600px; overflow: hidden; margin: 0 auto;">
+    <iframe src="https://ophysics.com/k8.html" style="width: 1100px; height: 762px; transform: scale(0.7); transform-origin: top left; border: 0;" scrolling="no"></iframe>
+</div>
 
 
 ## Conclusion
