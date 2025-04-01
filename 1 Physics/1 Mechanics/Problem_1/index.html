@@ -203,33 +203,21 @@ Since range <span class="arithmatex">\( R \)</span> is the total horizontal dist
    $$
    R = \frac{v_0^2 \sin(2\theta)}{g}
    $$</p>
-<h2 id="analyzing-the-range-with-regard-to-angle">Analyzing the Range with regard to Angle</h2>
-<p>To analyze, at what angle does the object cross the largest distance, one can calculate the Range for different angles.</p>
-<p>Let's take the angles <span class="arithmatex">\(15°, 30°, 45°, 60°\)</span> and <span class="arithmatex">\(75°\)</span></p>
-<p>For this example, let's take the initial velocity for 10 m/s.</p>
-<h6 id="15"><span class="arithmatex">\(15°\)</span></h6>
-<div class="arithmatex">\[
-R = \frac{v_0^2 \sin(2*15°)}{g} = 5 m
-\]</div>
-<h6 id="30"><span class="arithmatex">\(30°\)</span></h6>
-<div class="arithmatex">\[
-R = \frac{v_0^2 \sin(2*30°)}{g} = 8,66 m
-\]</div>
-<h6 id="45"><span class="arithmatex">\(45°\)</span></h6>
-<div class="arithmatex">\[
-R = \frac{v_0^2 \sin(2*45°)}{g} = 10 m
-\]</div>
-<h6 id="60"><span class="arithmatex">\(60°\)</span></h6>
-<div class="arithmatex">\[
-R = \frac{v_0^2 \sin(2*60°)}{g} = 8,66 m
-\]</div>
-<h6 id="75"><span class="arithmatex">\(75°\)</span></h6>
-<div class="arithmatex">\[
-R = \frac{v_0^2 \sin(2*75°)}{g} = 5 m
-\]</div>
-<p>As a result, the object increases it's range of flight when the angle approaches 45°. The further the angle from this number, the less distance it travels.</p>
-<p><img alt="Alt text" src="../../../_pics/image.png"/></p>
-<p>We can check the obtained result by plotting the flight distance of the thrown object with respect to the angle it has been thrown under:</p>
+<h2 id="analyzing-the-range-with-regard-to-angle">Analyzing the Range with Regard to Angle</h2>
+<p>The range is <strong>directly proportional</strong> to <span class="arithmatex">\( \sin 2\theta \)</span>, meaning that if <span class="arithmatex">\( \sin 2\theta \)</span> increases, the range also increases, and if <span class="arithmatex">\( \sin 2\theta \)</span> decreases, the range decreases accordingly.</p>
+<p>To analyze how the range varies with <span class="arithmatex">\( \theta \)</span>, we observe that:</p>
+<ul>
+<li>
+<p>The function <span class="arithmatex">\( \sin 2\theta \)</span> reaches its maximum value of <strong>1</strong> when <span class="arithmatex">\( 2\theta = 90^\circ \)</span>, or equivalently, <span class="arithmatex">\( \theta = 45^\circ \)</span>. This means the projectile achieves its maximum range at <span class="arithmatex">\( 45^\circ \)</span>.</p>
+</li>
+<li>
+<p>Since the sine function is symmetric about <span class="arithmatex">\( 90^\circ \)</span>, the range is the same for angles that sum to <span class="arithmatex">\( 90^\circ \)</span> (e.g., <span class="arithmatex">\( 30^\circ \)</span> and <span class="arithmatex">\( 60^\circ \)</span> yield the same range).</p>
+</li>
+<li>
+<p>For small or large angles near <span class="arithmatex">\( 0^\circ \)</span> and <span class="arithmatex">\( 90^\circ \)</span>, <span class="arithmatex">\( \sin 2\theta \)</span> approaches zero, causing the range to decrease.</p>
+</li>
+</ul>
+<p>The following graph illustrates the relationship between <span class="arithmatex">\( R \)</span> and <span class="arithmatex">\( \theta \)</span>, showing how the range increases up to <span class="arithmatex">\( 45^\circ \)</span> and then decreases symmetrically. The velocity was chosen </p>
 <p><img alt="Alt text" src="../../../_pics/Range%20to%20Angle.png"/></p>
 <p>However, angle is not a single parameter that determines the range - there is also velocity and gravitational acceleration:</p>
 <ul>
