@@ -112,53 +112,20 @@ Thus, the **range formula** for projectile motion is:
    R = \frac{v_0^2 \sin(2\theta)}{g}
    $$
 
-## Analyzing the Range with regard to Angle
+## Analyzing the Range with Regard to Angle
 
-To analyze, at what angle does the object cross the largest distance, one can calculate the Range for different angles.
+The range is **directly proportional** to \( \sin 2\theta \), meaning that if \( \sin 2\theta \) increases, the range also increases, and if \( \sin 2\theta \) decreases, the range decreases accordingly.
 
-Let's take the angles $15°, 30°, 45°, 60°$ and $75°$
+To analyze how the range varies with \( \theta \), we observe that:
 
-For this example, let's take the initial velocity for 10 m/s.
+- The function \( \sin 2\theta \) reaches its maximum value of **1** when \( 2\theta = 90^\circ \), or equivalently, \( \theta = 45^\circ \). This means the projectile achieves its maximum range at \( 45^\circ \).
 
-###### $15°$
+- Since the sine function is symmetric about \( 90^\circ \), the range is the same for angles that sum to \( 90^\circ \) (e.g., \( 30^\circ \) and \( 60^\circ \) yield the same range).
 
-$$
-R = \frac{v_0^2 \sin(2*15°)}{g} = 5 m
-$$
+- For small or large angles near \( 0^\circ \) and \( 90^\circ \), \( \sin 2\theta \) approaches zero, causing the range to decrease.
 
+The following graph illustrates the relationship between \( R \) and \( \theta \), showing how the range increases up to \( 45^\circ \) and then decreases symmetrically. The velocity was chosen 
 
-###### $30°$
-
-$$
-R = \frac{v_0^2 \sin(2*30°)}{g} = 8,66 m
-$$
-
-
-###### $45°$
-
-$$
-R = \frac{v_0^2 \sin(2*45°)}{g} = 10 m
-$$
-
-###### $60°$
-
-$$
-R = \frac{v_0^2 \sin(2*60°)}{g} = 8,66 m
-$$
-
-
-###### $75°$
-
-$$
-R = \frac{v_0^2 \sin(2*75°)}{g} = 5 m
-$$
-
-
-As a result, the object increases it's range of flight when the angle approaches 45°. The further the angle from this number, the less distance it travels.
-
-![Alt text](../../_pics/image.png)
-
-We can check the obtained result by plotting the flight distance of the thrown object with respect to the angle it has been thrown under:
 
 ![Alt text](../../_pics/Range to Angle.png)
 
