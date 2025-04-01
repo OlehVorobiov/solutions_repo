@@ -26,7 +26,7 @@ By the end of this report, we should have a clearer understanding of how the for
 
 ## Theoretical Foundation
 
-###Simple Pendulum
+### Simple Pendulum
 
 To understand forced damping pendulum, let's start with a simple pendulum to build up on that, gradually understanding phenomena of "damping" and "forcing"
 
@@ -70,10 +70,91 @@ T - mg \cos\theta = m \frac{v^2}{L}
 $$
 
 **Tangential force equation (Newton's Second Law in tangential direction):**
-$$
- m \frac{d^2s}{dt^2} = -mg \sin\theta
-$$
-Since arc length \( s \) is related to angular displacement \( \theta \) by \( s = L\theta \), this simplifies to:
-$$
-\frac{d^2\theta}{dt^2} + \frac{g}{L} \sin\theta = 0
-$$
+
+**Tangential Force**: 
+   $$
+   m \frac{d^2s}{dt^2} = -mg \sin\theta
+   $$
+   where:
+
+- \( m \) is the mass,
+
+- \( \frac{d^2s}{dt^2} \) is tangential acceleration,
+
+- \( -mg \sin\theta \) is the tangential component of gravitational force.
+
+**Arc Length Relation**: Since \( s = L\theta \) (where \( L \) is the length and \( \theta \) is the angular displacement), we differentiate to find:
+   $$
+   \frac{d^2s}{dt^2} = L \frac{d^2\theta}{dt^2}
+   $$
+
+**Simplified Equation**: Substituting this into the original equation:
+   $$
+   L \frac{d^2\theta}{dt^2} = -g \sin\theta
+   $$
+   Simplifying further:
+   $$
+   \frac{d^2\theta}{dt^2} + \frac{g}{L} \sin\theta = 0
+   $$
+
+This is the equation governing the angular motion of a pendulum. It describes the angular acceleration \( \frac{d^2\theta}{dt^2} \) as a function of the angle \( \theta \).
+
+
+![Alt text](../../_pics/Simple-Pendulum.jpg)
+
+
+### Damping in a Pendulum
+
+#### Introduction
+In an idealized simple pendulum, motion continues indefinitely without any loss of energy. However, in real-world scenarios, a pendulum experiences resistance forces such as air drag and friction at the pivot, leading to energy dissipation over time. This phenomenon is known as **damping**.
+
+#### The Damped Pendulum Equation
+To account for damping, an additional term is introduced in Newton’s Second Law, representing a resistive force proportional to velocity:
+
+\[ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0 \]
+
+where:
+
+- \( m \) is the mass of the pendulum bob,
+
+- \( s \) is the arc length (or \( \theta \) for angular motion),
+
+- \( b \) is the damping coefficient (determining the strength of resistance),
+
+- \( g \) is the acceleration due to gravity.
+
+In terms of angular displacement \( \theta \), using \( s = L\theta \):
+
+\[ \frac{d^2\theta}{dt^2} + \frac{b}{mL} \frac{d\theta}{dt} + \frac{g}{L} \sin\theta = 0 \]
+
+#### Types of Damping
+Depending on the value of the damping coefficient \( b \), different types of damping occur:
+
+1. **Underdamped (\( b^2 < \frac{4m^2g}{L} \))**
+
+    - The pendulum oscillates but gradually loses energy.
+
+    - The amplitude decreases exponentially over time.
+
+2. **Critically Damped (\( b^2 = \frac{4m^2g}{L} \))**
+
+    - The system returns to equilibrium as quickly as possible without oscillating.
+
+    - This is often used in engineering to prevent overshooting (e.g., car suspension systems).
+
+3. **Overdamped (\( b^2 > \frac{4m^2g}{L} \))**
+
+    - The pendulum returns to equilibrium very slowly without oscillating.
+
+    - Energy loss is so strong that motion is heavily suppressed.
+
+#### Real-World Examples of Damping
+
+- A **grandfather clock** experiences slow air resistance and slight friction at the pivot, leading to a gradual decrease in amplitude if not wound regularly.
+
+- **Seismic dampers** in buildings use overdamping principles to reduce vibrations during earthquakes.
+
+- **Automotive shock absorbers** operate near critical damping to ensure smooth and stable motion after a bump.
+
+#### Conclusion
+Damping plays a crucial role in real-world oscillatory systems. While underdamping allows oscillations to persist with decreasing amplitude, critical and overdamping eliminate oscillations more quickly. Understanding damping behavior is essential before analyzing more complex forced pendulum systems, which introduce external periodic forces.
