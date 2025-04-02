@@ -124,7 +124,7 @@ To analyze how the range varies with \( \theta \), we observe that:
 
 - For small or large angles near \( 0^\circ \) and \( 90^\circ \), \( \sin 2\theta \) approaches zero, causing the range to decrease.
 
-The following graph illustrates the relationship between \( R \) and \( \theta \), showing how the range increases up to \( 45^\circ \) and then decreases symmetrically. The velocity was chosen 
+The following graph illustrates the relationship between \( R \) and \( \theta \), showing how the range increases up to \( 45^\circ \) and then decreases symmetrically. The velocity was chosen $10 m/s$ 
 
 
 ![Alt text](../../_pics/Range to Angle.png)
