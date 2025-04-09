@@ -238,8 +238,11 @@ The three types of damping are:
 
 ##### Damping Ratio
 Define \( \zeta = \frac{\gamma}{\omega_0} = \frac{b}{2m \sqrt{\frac{g}{L}}} \):
+
 - \( \zeta < 1 \): Underdamped,
+
 - \( \zeta = 1 \): Critically damped,
+
 - \( \zeta > 1 \): Overdamped.
 
 ##### Notes
