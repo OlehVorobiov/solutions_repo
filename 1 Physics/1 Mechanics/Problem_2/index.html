@@ -308,7 +308,7 @@ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0
 <p>The three types of damping are:</p>
 <h5 id="1-underdamped">1. Underdamped</h5>
 <ul>
-<li><strong>Condition</strong>: <span class="arithmatex">\( \Delta &lt; 0 \)</span> or <span class="arithmatex">\( \gamma &lt; \omega_0 \)</span> (i.e., <span class="arithmatex">\( \frac{b}{2m} &lt; \sqrt{\frac{g}{L}} \)</span>).</li>
+<li><strong>Condition</strong>: <span class="arithmatex">\( \Delta &lt; 0 \)</span> or <span class="arithmatex">\( \frac{b}{2m} &lt; \sqrt{\frac{g}{L}} \)</span>.</li>
 <li><strong>Description</strong>: Oscillates with decreasing amplitude.</li>
 <li><strong>Roots</strong>: Complex, <span class="arithmatex">\( r = -\gamma \pm i\sqrt{\omega_0^2 - \gamma^2} \)</span>.</li>
 <li><strong>Solution</strong>:
@@ -321,7 +321,7 @@ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0
 </ul>
 <h5 id="2-critically-damped">2. Critically Damped</h5>
 <ul>
-<li><strong>Condition</strong>: <span class="arithmatex">\( \Delta = 0 \)</span> or <span class="arithmatex">\( \gamma = \omega_0 \)</span> (i.e., <span class="arithmatex">\( \frac{b}{2m} = \sqrt{\frac{g}{L}} \)</span>).</li>
+<li><strong>Condition</strong>: <span class="arithmatex">\( \Delta = 0 \)</span> or <span class="arithmatex">\( \frac{b}{2m} = \sqrt{\frac{g}{L}} \)</span>.</li>
 <li><strong>Description</strong>: Returns to equilibrium fastest without oscillating.</li>
 <li><strong>Roots</strong>: Real, equal, <span class="arithmatex">\( r = -\gamma = -\sqrt{\frac{g}{L}} \)</span>.</li>
 <li><strong>Solution</strong>:
@@ -331,7 +331,7 @@ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0
 </ul>
 <h5 id="3-overdamped">3. Overdamped</h5>
 <ul>
-<li><strong>Condition</strong>: <span class="arithmatex">\( \Delta &gt; 0 \)</span> or <span class="arithmatex">\( \gamma &gt; \omega_0 \)</span> (i.e., <span class="arithmatex">\( \frac{b}{2m} &gt; \sqrt{\frac{g}{L}} \)</span>).</li>
+<li><strong>Condition</strong>: <span class="arithmatex">\( \Delta &gt; 0 \)</span> or <span class="arithmatex">\( \frac{b}{2m} &gt; \sqrt{\frac{g}{L}} \)</span>.</li>
 <li><strong>Description</strong>: Returns to equilibrium slowly, no oscillations.</li>
 <li><strong>Roots</strong>: Real, distinct, <span class="arithmatex">\( r_{1,2} = -\gamma \pm \sqrt{\gamma^2 - \omega_0^2} \)</span>.</li>
 <li><strong>Solution</strong>:
@@ -344,19 +344,6 @@ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0
 <li><strong>Underdamped</strong>: Light damping, oscillations persist (e.g., pendulum in air).</li>
 <li><strong>Critically Damped</strong>: Balanced damping, fastest non-oscillatory return (e.g., tuned suspension).</li>
 <li><strong>Overdamped</strong>: Heavy damping, sluggish return (e.g., pendulum in oil).</li>
-</ul>
-<h5 id="damping-ratio">Damping Ratio</h5>
-<p>Define <span class="arithmatex">\( \zeta = \frac{\gamma}{\omega_0} = \frac{b}{2m \sqrt{\frac{g}{L}}} \)</span>:</p>
-<ul>
-<li>
-<p><span class="arithmatex">\( \zeta &lt; 1 \)</span>: Underdamped,</p>
-</li>
-<li>
-<p><span class="arithmatex">\( \zeta = 1 \)</span>: Critically damped,</p>
-</li>
-<li>
-<p><span class="arithmatex">\( \zeta &gt; 1 \)</span>: Overdamped.</p>
-</li>
 </ul>
 <h5 id="notes">Notes</h5>
 <p>The linear form applies for small angles. For large <span class="arithmatex">\( \theta \)</span>, the nonlinear <span class="arithmatex">\( \sin(\theta) \)</span> term complicates behavior, but these types still guide qualitative outcomes.</p>
@@ -373,21 +360,22 @@ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0
 <hr/>
 <h3 id="forcing-in-a-pendulum">Forcing in a Pendulum</h3>
 <h4 id="introduction_2">Introduction</h4>
-<p>In the real world, many systems are not only subject to internal resistive forces (damping) but also influenced by external periodic forces. A <strong>forced pendulum</strong> is one where an external agent continuously applies a time-varying force, typically periodic, such as a push at regular intervals. This makes the pendulum a <strong>non-conservative, driven oscillator</strong>.</p>
+<p>In the real world, many systems are influenced not only by internal resistive forces (damping) but also by external periodic forces. A <strong>forced pendulum</strong> is an example of a system where an external agent applies a time-varying force, typically periodic, such as a push at regular intervals. This makes the pendulum a <strong>non-conservative, driven oscillator</strong>. Forced pendulums are a key example of driven systems and have applications in real-world phenomena like metronomes, mechanical clocks, and even seismic waves in structures.</p>
 <h4 id="external-forcing-term">External Forcing Term</h4>
-<p>An external force is often modeled as sinusoidal:</p>
+<p>The external force acting on the system is often modeled as sinusoidal:</p>
 <div class="arithmatex">\[
 F_{\text{ext}}(t) = F_0 \cos(\omega t)
 \]</div>
+<p>where:</p>
 <ul>
 <li><span class="arithmatex">\( F_0 \)</span>: Amplitude of the forcing (N),</li>
 <li><span class="arithmatex">\( \omega \)</span>: Angular frequency of the driving force (rad/s),</li>
 <li><span class="arithmatex">\( t \)</span>: Time (s).</li>
 </ul>
-<p>This force adds energy to the system and competes with damping to influence long-term behavior.</p>
+<p>This force adds energy to the system, competing with damping forces and influencing its long-term behavior. The amplitude <span class="arithmatex">\( F_0 \)</span> determines how much energy is injected into the system, and the frequency <span class="arithmatex">\( \omega \)</span> determines how frequently this energy is delivered.</p>
 <hr/>
 <h4 id="the-forced-damped-pendulum-equation">The Forced Damped Pendulum Equation</h4>
-<p>Including the forcing term, the angular equation of motion becomes:</p>
+<p>Including the forcing term, the equation of motion for the pendulum becomes:</p>
 <div class="arithmatex">\[
 \frac{d^2\theta}{dt^2} + \frac{b}{m} \frac{d\theta}{dt} + \frac{g}{L} \sin\theta = \frac{F_0}{mL} \cos(\omega t)
 \]</div>
@@ -396,7 +384,7 @@ F_{\text{ext}}(t) = F_0 \cos(\omega t)
 <li>Left-hand side: internal system dynamics (restoring + damping),</li>
 <li>Right-hand side: external input (forcing).</li>
 </ul>
-<p>In the small-angle approximation <span class="arithmatex">\( \sin(\theta) \approx \theta \)</span>, it simplifies to:</p>
+<p>For small angles <span class="arithmatex">\( \theta \)</span>, we can approximate <span class="arithmatex">\( \sin(\theta) \approx \theta \)</span>, simplifying the equation to:</p>
 <div class="arithmatex">\[
 \frac{d^2\theta}{dt^2} + 2\gamma \frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
 \]</div>
@@ -408,52 +396,49 @@ F_{\text{ext}}(t) = F_0 \cos(\omega t)
 </ul>
 <hr/>
 <h4 id="steady-state-vs-transient-behavior">Steady-State vs Transient Behavior</h4>
-<p>The full solution consists of:</p>
+<p>The full solution to the equation consists of two parts:</p>
 <ol>
-<li><strong>Transient Solution</strong>: Depends on initial conditions and decays due to damping,</li>
-<li><strong>Steady-State Solution</strong>: Oscillates at the forcing frequency <span class="arithmatex">\( \omega \)</span>, persists indefinitely.</li>
+<li><strong>Transient Solution</strong>: This depends on the system's initial conditions and decays over time due to damping.</li>
+<li><strong>Steady-State Solution</strong>: Once the system has adjusted, the oscillations continue at the forcing frequency <span class="arithmatex">\( \omega \)</span>, unaffected by initial conditions.</li>
 </ol>
-<p>Over time, damping causes the transient part to vanish, leaving only the steady-state oscillation.</p>
+<p>Over time, the transient solution diminishes, leaving only the steady-state oscillations, which persist indefinitely.</p>
 <hr/>
 <h4 id="resonance">Resonance</h4>
-<p>A particularly interesting phenomenon arises when the forcing frequency <span class="arithmatex">\( \omega \)</span> approaches the natural frequency <span class="arithmatex">\( \omega_0 \)</span>. This is called <strong>resonance</strong>.</p>
+<p>A particularly interesting phenomenon occurs when the forcing frequency <span class="arithmatex">\( \omega \)</span> matches the natural frequency <span class="arithmatex">\( \omega_0 \)</span> of the pendulum. This condition is known as <strong>resonance</strong>.</p>
 <ul>
-<li><strong>At Resonance</strong>: The system absorbs energy efficiently, and the amplitude grows (limited by damping).</li>
-<li><strong>Maximum response</strong>: Occurs at:</li>
+<li><strong>At Resonance</strong>: The system absorbs energy efficiently, causing the amplitude of oscillations to grow (though the growth is limited by damping).</li>
+<li><strong>Maximum Response</strong>: The maximum response occurs when:</li>
 </ul>
-<p>[
-  \omega_{\text{res}} = \sqrt{\omega_0^2 - 2\gamma^2}
-  ]</p>
-<p>(for underdamped systems)</p>
-<ul>
-<li>Without damping, amplitude would grow indefinitely (ideal case).</li>
-</ul>
+<div class="arithmatex">\[
+\omega_{\text{res}} = \omega_0
+\]</div>
+<p>For an underdamped system, resonance leads to a sharp increase in amplitude near <span class="arithmatex">\( \omega_0 \)</span>. In the ideal case, where damping is absent, the amplitude would grow indefinitely.</p>
 <h4 id="behavior-summary">Behavior Summary</h4>
 <ul>
-<li><strong>Low Forcing Frequency</strong>: Pendulum follows force slowly.</li>
-<li><strong>High Forcing Frequency</strong>: Pendulum cannot keep up; response is weak.</li>
-<li><strong>Near Resonance</strong>: Large, sustained oscillations occur.</li>
+<li><strong>Low Forcing Frequency</strong>: The pendulum follows the force slowly, with minimal oscillation.</li>
+<li><strong>High Forcing Frequency</strong>: The pendulum cannot keep up with the forcing frequency, and its response weakens.</li>
+<li><strong>Near Resonance</strong>: When the forcing frequency is close to the natural frequency, large and sustained oscillations occur.</li>
 </ul>
 <hr/>
 <h4 id="chaotic-motion-nonlinear-case">Chaotic Motion (Nonlinear Case)</h4>
-<p>When angles are large and the full <span class="arithmatex">\( \sin(\theta) \)</span> is kept (nonlinear), the system can exhibit <strong>chaotic behavior</strong> for certain ranges of:</p>
+<p>When the angle of the pendulum becomes large and the full <span class="arithmatex">\( \sin(\theta) \)</span> term is used (instead of the small-angle approximation), the system can exhibit <strong>chaotic behavior</strong>. This occurs for certain values of:</p>
 <ul>
 <li>Forcing amplitude <span class="arithmatex">\( A \)</span>,</li>
 <li>Driving frequency <span class="arithmatex">\( \omega \)</span>,</li>
 <li>Damping factor <span class="arithmatex">\( \gamma \)</span>.</li>
 </ul>
-<p>This means the motion becomes extremely sensitive to initial conditions and appears irregular despite being deterministic.</p>
+<p>In such cases, the motion of the pendulum becomes highly sensitive to initial conditions, resulting in irregular, unpredictable behavior despite being governed by deterministic equations. This phenomenon is a hallmark of chaotic systems and underscores the complexity introduced by non-linearities.</p>
 <hr/>
 <h4 id="real-world-examples-of-forced-pendulums">Real-World Examples of Forced Pendulums</h4>
 <ul>
-<li><strong>Metronome on a moving surface</strong>: The table's vibrations act as periodic forcing.</li>
-<li><strong>Electric clocks</strong>: Driven by electromagnetic pulses.</li>
-<li><strong>Child on a swing</strong>: External periodic pushing forces act as driving input.</li>
+<li><strong>Metronome on a moving surface</strong>: A metronome placed on a vibrating table experiences external periodic forcing from the vibrations of the surface it rests on, influencing its oscillations.</li>
+<li><strong>Electric Clocks</strong>: Driven by electromagnetic pulses that periodically force the pendulum to oscillate, maintaining consistent timekeeping.</li>
+<li><strong>Child on a Swing</strong>: A child on a swing experiences periodic pushes, with each push providing an external force that drives the oscillations.</li>
 </ul>
+<p>These examples illustrate how the principles of forced oscillations apply to everyday systems.</p>
 <hr/>
 <h4 id="conclusion_1">Conclusion</h4>
-<p>Forcing introduces sustained external energy into the pendulum system, enriching its dynamics. When combined with damping and nonlinear effects, the forced pendulum becomes a gateway into complex behaviors like resonance and chaos, making it a fundamental example in the study of driven oscillatory systems.</p>
-<hr/>
+<p>Forcing introduces sustained external energy into a pendulum system, significantly enriching its dynamics. Combined with damping and non-linear effects, the forced pendulum exhibits fascinating behaviors such as resonance and chaos. These phenomena make the forced pendulum an essential example in the study of driven oscillatory systems and complex dynamics.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
