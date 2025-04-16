@@ -135,7 +135,7 @@
 <p>Analysis of Dynamics: We'll explore how changing factors like friction, the strength of the external force, and its frequency affect the pendulum's motion, including how it can become chaotic.</p>
 </li>
 <li>
-<p>Practical Applications: We'll discuss real-world systems that work similarly, such as energy harvesting devices and vibration control systems.</p>
+<p>Practical Applications: We'll discuss real-world systems that work similarly.</p>
 </li>
 <li>
 <p>Computational Implementation: We'll create a computer simulation to visualize how the pendulum moves under different conditions and analyze its behavior using tools like phase diagrams and Poincaré sections.</p>
@@ -144,7 +144,7 @@
 <p>By the end of this report, we should have a clearer understanding of how the forced damped pendulum works and why it is relevant to various fields of science and engineering.</p>
 <h2 id="theoretical-foundation">Theoretical Foundation</h2>
 <h3 id="simple-pendulum">Simple Pendulum</h3>
-<p>To understand forced damping pendulum, let's start with a simple pendulum to build up on that, gradually understanding phenomena of "damping" and "forcing"</p>
+<p>To understand forced damped pendulum, let's start with a simple pendulum to build up on that, gradually understanding phenomena of "damping" and "forcing"</p>
 <p><img alt="Alt text" src="../../../_pics/AnimatedPendulum.gif"/></p>
 <p>A simple pendulum is a mass (called the bob) attached to a string or rod that swings back and forth under the influence of gravity. The key features of a simple pendulum are:</p>
 <ul>
@@ -223,6 +223,10 @@ $$</p>
    $$</p>
 <p>This is the equation governing the angular motion of a pendulum. It describes the angular acceleration <span class="arithmatex">\( \frac{d^2\theta}{dt^2} \)</span> as a function of the angle <span class="arithmatex">\( \theta \)</span>.</p>
 <p><img alt="Alt text" src="../../../_pics/Simple-Pendulum.jpg"/></p>
+<p>Simulation of a simple pendulum for length <span class="arithmatex">\(L = 1\)</span> m and initial angle <span class="arithmatex">\(\theta = 0.2\)</span>:</p>
+<p><img alt="Alt text" src="../../../_pics/SimplePendulumSimulation.png"/>
+<img alt="Alt text" src="../../../_pics/SimplePendulumPhase.png"/></p>
+<p>You can try simulating a simple pendulum, as well as damped and forced pendulum yourself <a href="https://colab.research.google.com/github/OlehVorobiov/solutions_repo/blob/main/docs/Interactives/ForcedDampedPendulum.ipynb">here</a>.</p>
 <hr/>
 <h3 id="damping-in-a-pendulum">Damping in a Pendulum</h3>
 <h4 id="introduction_1">Introduction</h4>
@@ -272,6 +276,9 @@ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0
 <div class="arithmatex">\[
 \frac{d^2\theta}{dt^2} + \frac{b}{m} \frac{d\theta}{dt} + \frac{g}{L} \sin\theta = 0
 \]</div>
+<p>Simulation of a damped pendulum for length <span class="arithmatex">\(L = 1\)</span> m, initial angle <span class="arithmatex">\(\theta = 0.2\)</span> and different damping factors <span class="arithmatex">\(\beta = \frac{b}{2m}\)</span>:</p>
+<p><img alt="Alt text" src="../../../_pics/DampedPendulumSimulation.png"/>
+<img alt="Alt text" src="../../../_pics/DampedPendulumPhase.png"/></p>
 <hr/>
 <h4 id="types-of-damping-in-a-pendulum">Types of Damping in a Pendulum</h4>
 <p>In a damped pendulum, the equation of motion with angular displacement <span class="arithmatex">\( \theta \)</span> is:</p>
@@ -293,7 +300,7 @@ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0
 <p>Define:</p>
 <ul>
 <li>
-<p><span class="arithmatex">\( \gamma = \frac{b}{2m} \)</span>: Damping factor (s⁻¹),</p>
+<p><span class="arithmatex">\( \beta = \frac{b}{2m} \)</span>: Damping factor (s⁻¹),</p>
 </li>
 <li>
 <p><span class="arithmatex">\( \omega_0 = \sqrt{\frac{g}{L}} \)</span>: Natural angular frequency (rad/s).</p>
@@ -302,49 +309,54 @@ m \frac{d^2s}{dt^2} + b \frac{ds}{dt} + mg \sin\theta = 0
 <p>The characteristic equation is:</p>
 <div class="arithmatex">\[ r^2 + \frac{b}{m} r + \frac{g}{L} = 0 \]</div>
 <p>Or:</p>
-<div class="arithmatex">\[ r^2 + 2\gamma r + \omega_0^2 = 0 \]</div>
+<div class="arithmatex">\[ r^2 + 2\beta r + \omega_0^2 = 0 \]</div>
 <p>The discriminant determines the damping type:</p>
-<div class="arithmatex">\[ \Delta = \left(\frac{b}{m}\right)^2 - 4 \frac{g}{L} = 4\gamma^2 - 4\omega_0^2 \]</div>
+<div class="arithmatex">\[ \Delta = \left(\frac{b}{m}\right)^2 - 4 \frac{g}{L} = 4\beta^2 - 4\omega_0^2 \]</div>
 <p>The three types of damping are:</p>
 <h5 id="1-underdamped">1. Underdamped</h5>
 <ul>
 <li><strong>Condition</strong>: <span class="arithmatex">\( \Delta &lt; 0 \)</span> or <span class="arithmatex">\( \frac{b}{2m} &lt; \sqrt{\frac{g}{L}} \)</span>.</li>
 <li><strong>Description</strong>: Oscillates with decreasing amplitude.</li>
-<li><strong>Roots</strong>: Complex, <span class="arithmatex">\( r = -\gamma \pm i\sqrt{\omega_0^2 - \gamma^2} \)</span>.</li>
+<li><strong>Roots</strong>: Complex, <span class="arithmatex">\( r = -\beta \pm i\sqrt{\omega_0^2 - \beta^2} \)</span>.</li>
 <li><strong>Solution</strong>:
-  $$ \theta(t) = e^{-\gamma t} [A \cos(\omega t) + B \sin(\omega t)] $$
+  $$ \theta(t) = e^{-\beta t} [A \cos(\omega t) + B \sin(\omega t)] $$
   Or:
-  $$ \theta(t) = C e^{-\gamma t} \cos(\omega t + \phi) $$</li>
-<li><span class="arithmatex">\( \omega = \sqrt{\omega_0^2 - \gamma^2} \)</span>: Damped frequency,</li>
+  $$ \theta(t) = C e^{-\beta t} \cos(\omega t + \phi) $$</li>
+<li><span class="arithmatex">\( \omega = \sqrt{\omega_0^2 - \beta^2} \)</span>: Damped frequency,</li>
 <li><span class="arithmatex">\( A, B \)</span> or <span class="arithmatex">\( C, \phi \)</span>: Constants from initial conditions.</li>
 <li><strong>Behavior</strong>: Pendulum swings, amplitude shrinks exponentially.</li>
 </ul>
+<p><img alt="Alt text" src="../../../_pics/Underdamped.png"/></p>
 <h5 id="2-critically-damped">2. Critically Damped</h5>
 <ul>
 <li><strong>Condition</strong>: <span class="arithmatex">\( \Delta = 0 \)</span> or <span class="arithmatex">\( \frac{b}{2m} = \sqrt{\frac{g}{L}} \)</span>.</li>
 <li><strong>Description</strong>: Returns to equilibrium fastest without oscillating.</li>
-<li><strong>Roots</strong>: Real, equal, <span class="arithmatex">\( r = -\gamma = -\sqrt{\frac{g}{L}} \)</span>.</li>
+<li><strong>Roots</strong>: Real, equal, <span class="arithmatex">\( r = -\beta = -\sqrt{\frac{g}{L}} \)</span>.</li>
 <li><strong>Solution</strong>:
-  $$ \theta(t) = (A + B t) e^{-\gamma t} $$</li>
+  $$ \theta(t) = (A + B t) e^{-\beta t} $$</li>
 <li><span class="arithmatex">\( A, B \)</span>: Constants from initial conditions.</li>
 <li><strong>Behavior</strong>: Smooth return to vertical, no overshoot.</li>
 </ul>
+<p><img alt="Alt text" src="../../../_pics/CriticallyDamped.png"/></p>
 <h5 id="3-overdamped">3. Overdamped</h5>
 <ul>
 <li><strong>Condition</strong>: <span class="arithmatex">\( \Delta &gt; 0 \)</span> or <span class="arithmatex">\( \frac{b}{2m} &gt; \sqrt{\frac{g}{L}} \)</span>.</li>
 <li><strong>Description</strong>: Returns to equilibrium slowly, no oscillations.</li>
-<li><strong>Roots</strong>: Real, distinct, <span class="arithmatex">\( r_{1,2} = -\gamma \pm \sqrt{\gamma^2 - \omega_0^2} \)</span>.</li>
+<li><strong>Roots</strong>: Real, distinct, <span class="arithmatex">\( r_{1,2} = -\beta \pm \sqrt{\beta^2 - \omega_0^2} \)</span>.</li>
 <li><strong>Solution</strong>:
   $$ \theta(t) = A e^{r_1 t} + B e^{r_2 t} $$</li>
 <li><span class="arithmatex">\( r_1, r_2 &lt; 0 \)</span>: Both terms decay.</li>
 <li><strong>Behavior</strong>: Slow, non-oscillatory return.</li>
 </ul>
+<p><img alt="Alt text" src="../../../_pics/Overdamped.png"/></p>
 <h4 id="physical-insight">Physical Insight</h4>
 <ul>
 <li><strong>Underdamped</strong>: Light damping, oscillations persist (e.g., pendulum in air).</li>
 <li><strong>Critically Damped</strong>: Balanced damping, fastest non-oscillatory return (e.g., tuned suspension).</li>
 <li><strong>Overdamped</strong>: Heavy damping, sluggish return (e.g., pendulum in oil).</li>
 </ul>
+<p><img alt="Alt text" src="../../../_pics/TypesSimulation.png"/>
+<img alt="Alt text" src="../../../_pics/TypesPhase.png"/></p>
 <h5 id="notes">Notes</h5>
 <p>The linear form applies for small angles. For large <span class="arithmatex">\( \theta \)</span>, the nonlinear <span class="arithmatex">\( \sin(\theta) \)</span> term complicates behavior, but these types still guide qualitative outcomes.</p>
 <hr/>
@@ -386,48 +398,51 @@ F_{\text{ext}}(t) = F_0 \cos(\omega t)
 </ul>
 <p>For small angles <span class="arithmatex">\( \theta \)</span>, we can approximate <span class="arithmatex">\( \sin(\theta) \approx \theta \)</span>, simplifying the equation to:</p>
 <div class="arithmatex">\[
-\frac{d^2\theta}{dt^2} + 2\gamma \frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
+\frac{d^2\theta}{dt^2} + 2\beta \frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
 \]</div>
 <p>where:</p>
 <ul>
-<li><span class="arithmatex">\( \gamma = \frac{b}{2m} \)</span>: damping factor,</li>
+<li><span class="arithmatex">\( \beta = \frac{b}{2m} \)</span>: damping factor,</li>
 <li><span class="arithmatex">\( \omega_0 = \sqrt{\frac{g}{L}} \)</span>: natural frequency of the pendulum,</li>
 <li><span class="arithmatex">\( A = \frac{F_0}{mL} \)</span>: scaled forcing amplitude.</li>
 </ul>
-<hr/>
-<h4 id="steady-state-vs-transient-behavior">Steady-State vs Transient Behavior</h4>
-<p>The full solution to the equation consists of two parts:</p>
-<ol>
-<li><strong>Transient Solution</strong>: This depends on the system's initial conditions and decays over time due to damping.</li>
-<li><strong>Steady-State Solution</strong>: Once the system has adjusted, the oscillations continue at the forcing frequency <span class="arithmatex">\( \omega \)</span>, unaffected by initial conditions.</li>
-</ol>
-<p>Over time, the transient solution diminishes, leaving only the steady-state oscillations, which persist indefinitely.</p>
+<p>Simulation of a forced damped pendulum for same parameters as before and different values of scaled forcing amplitude <span class="arithmatex">\((A)\)</span> and angular frequency of the driving force <span class="arithmatex">\((\omega)\)</span>:</p>
+<p><img alt="Alt text" src="../../../_pics/ForcedDampedPendulumSimulation.png"/>
+<img alt="Alt text" src="../../../_pics/ForcedDampedPendulumPhase.png"/></p>
 <hr/>
 <h4 id="resonance">Resonance</h4>
 <p>A particularly interesting phenomenon occurs when the forcing frequency <span class="arithmatex">\( \omega \)</span> matches the natural frequency <span class="arithmatex">\( \omega_0 \)</span> of the pendulum. This condition is known as <strong>resonance</strong>.</p>
 <ul>
-<li><strong>At Resonance</strong>: The system absorbs energy efficiently, causing the amplitude of oscillations to grow (though the growth is limited by damping).</li>
-<li><strong>Maximum Response</strong>: The maximum response occurs when:</li>
+<li><strong>At Resonance</strong>: The system absorbs energy most efficiently from the external force, leading to large amplitude oscillations.</li>
+<li><strong>Maximum Response</strong>: The largest response occurs when:</li>
 </ul>
 <div class="arithmatex">\[
-\omega_{\text{res}} = \omega_0
+\omega_{\text{res}} \approx \omega_0
 \]</div>
-<p>For an underdamped system, resonance leads to a sharp increase in amplitude near <span class="arithmatex">\( \omega_0 \)</span>. In the ideal case, where damping is absent, the amplitude would grow indefinitely.</p>
+<p>This is the condition for resonance in the ideal case (without damping). In real systems, damping is always present, which slightly shifts the resonance frequency and limits the maximum amplitude. The stronger the damping, the smaller the amplitude at resonance and the less sharp the peak response.</p>
+<h4 id="implications-for-system-energy">Implications for System Energy</h4>
+<p>At resonance, the external force continuously adds energy in sync with the pendulum's motion. Since the system is absorbing energy efficiently, the total mechanical energy increases and can become quite large if damping is weak. Damping plays a crucial role in preventing the energy from growing indefinitely by dissipating it over time.</p>
 <h4 id="behavior-summary">Behavior Summary</h4>
 <ul>
-<li><strong>Low Forcing Frequency</strong>: The pendulum follows the force slowly, with minimal oscillation.</li>
-<li><strong>High Forcing Frequency</strong>: The pendulum cannot keep up with the forcing frequency, and its response weakens.</li>
-<li><strong>Near Resonance</strong>: When the forcing frequency is close to the natural frequency, large and sustained oscillations occur.</li>
+<li><strong>Low Forcing Frequency</strong>: The pendulum slowly follows the external force with low amplitude.</li>
+<li><strong>High Forcing Frequency</strong>: The pendulum can't respond quickly, and the amplitude remains small.</li>
+<li><strong>Near Resonance</strong>: The system oscillates with large amplitude, and energy transfer is most effective.</li>
 </ul>
+<p><img alt="Alt text" src="../../../_pics/FrequencySimulation.png"/>
+<img alt="Alt text" src="../../../_pics/FrequencyPhase.png"/></p>
 <hr/>
 <h4 id="chaotic-motion-nonlinear-case">Chaotic Motion (Nonlinear Case)</h4>
-<p>When the angle of the pendulum becomes large and the full <span class="arithmatex">\( \sin(\theta) \)</span> term is used (instead of the small-angle approximation), the system can exhibit <strong>chaotic behavior</strong>. This occurs for certain values of:</p>
+<p>In a forced, damped pendulum system, chaotic behavior can emerge when the system is driven by an external periodic force. The motion becomes chaotic under certain combinations of parameters, particularly:</p>
 <ul>
 <li>Forcing amplitude <span class="arithmatex">\( A \)</span>,</li>
 <li>Driving frequency <span class="arithmatex">\( \omega \)</span>,</li>
-<li>Damping factor <span class="arithmatex">\( \gamma \)</span>.</li>
+<li>Damping factor <span class="arithmatex">\( \beta \)</span>.</li>
 </ul>
-<p>In such cases, the motion of the pendulum becomes highly sensitive to initial conditions, resulting in irregular, unpredictable behavior despite being governed by deterministic equations. This phenomenon is a hallmark of chaotic systems and underscores the complexity introduced by non-linearities.</p>
+<p>When these parameters fall within a critical range, the pendulum's motion becomes highly sensitive to initial conditions. Small differences in initial displacement or velocity can lead to drastically different long-term behavior, which is a defining characteristic of chaotic systems. Despite the system being governed by deterministic equations, the motion appears irregular, unpredictable, and non-repeating.</p>
+<p>The transition to chaos occurs due to the <strong>nonlinearity</strong> of the system. At certain values of the forcing amplitude and frequency, the pendulum experiences complex resonance effects that amplify small perturbations. This results in an unpredictable interplay between the driving force and the pendulum’s natural motion, leading to chaotic oscillations. The system's sensitivity to initial conditions and the irregularity of its long-term behavior are hallmarks of <strong>chaotic motion</strong>.</p>
+<p><img alt="Alt text" src="../../../_pics/ChaosSimulation.png"/>
+<img alt="Alt text" src="../../../_pics/ChaosPhase.png"/></p>
+<p>Note: length <span class="arithmatex">\(L\)</span> of the pendulum was increased to <span class="arithmatex">\(9.81\)</span> m to make the <span class="arithmatex">\(\omega_0 = 1\)</span></p>
 <hr/>
 <h4 id="real-world-examples-of-forced-pendulums">Real-World Examples of Forced Pendulums</h4>
 <ul>
@@ -439,6 +454,25 @@ F_{\text{ext}}(t) = F_0 \cos(\omega t)
 <hr/>
 <h4 id="conclusion_1">Conclusion</h4>
 <p>Forcing introduces sustained external energy into a pendulum system, significantly enriching its dynamics. Combined with damping and non-linear effects, the forced pendulum exhibits fascinating behaviors such as resonance and chaos. These phenomena make the forced pendulum an essential example in the study of driven oscillatory systems and complex dynamics.</p>
+<hr/>
+<h2 id="analysis-of-dynamics">Analysis of Dynamics</h2>
+<h3 id="few-more-cases">Few more cases:</h3>
+<h4 id="dependency-on-forcing-amplitude-a">Dependency on Forcing amplitude <span class="arithmatex">\((A)\)</span></h4>
+<p><img alt="Alt text" src="../../../_pics/AmplitudeSimulation.png"/>
+<img alt="Alt text" src="../../../_pics/AmplitudePhase.png"/></p>
+<h4 id="forcing-with-no-damping">Forcing with no damping</h4>
+<p>At resonance:</p>
+<p><img alt="Alt text" src="../../../_pics/ForcingSimulation.png"/>
+<img alt="Alt text" src="../../../_pics/ForcingPhase.png"/></p>
+<p>Out of resonance:</p>
+<p><img alt="Alt text" src="../../../_pics/ForcingNoRSimulation.png"/>
+<img alt="Alt text" src="../../../_pics/ForcingNoRPhase.png"/></p>
+<h2 id="conclusion_2">Conclusion</h2>
+<p>Conclusion
+The forced damped pendulum is a compelling example of how simple mechanical systems can lead to highly complex and even chaotic behavior under certain conditions. Through the progression from a basic pendulum model to the inclusion of damping and external forcing, we see how small modifications can drastically change the dynamics—from regular oscillations to unpredictable, sensitive motion.</p>
+<p>Our theoretical exploration laid the groundwork by understanding the forces at play and the role of damping. From there, we introduced the concept of external periodic forcing, which, combined with damping, introduces rich dynamics not present in simpler models. Computational simulations further helped us visualize these effects, showing clear distinctions between underdamped, critically damped, and overdamped cases, as well as transitions from periodic to chaotic behavior when forcing is applied.</p>
+<p>This system doesn't just have academic interest—it parallels many real-world phenomena, from engineering to climate science, where systems are subjected to resistance and external influences. Understanding how a pendulum behaves under these conditions provides insight into the stability, resilience, and potential unpredictability of such systems.</p>
+<p>Overall, the study of the forced damped pendulum highlights the delicate balance between order and chaos, making it not only a fascinating topic in physics but also a valuable model for interpreting broader patterns in nature and technology.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
