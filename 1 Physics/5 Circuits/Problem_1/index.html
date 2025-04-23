@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Equivalent Resistance Using Graph Theory - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Equivalent Resistance Using Graph Theory";
         var mkdocs_page_input_path = "1 Physics/5 Circuits/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,14 +70,50 @@
 </li>
 <li class="toctree-l1"><a class="reference internal">4 Electromagnetism</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../../4%20Electromagnetism/Problem_1/">Problem 1</a>
+<li class="toctree-l2"><a class="reference internal" href="../../4%20Electromagnetism/Problem_1/">Simulating the Effects of the Lorentz Force on Charged Particle Motion</a>
 </li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">5 Circuits</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Equivalent Resistance Using Graph Theory</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-introduction">1. Introduction</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-background-theory">2. Background Theory</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#21-electrical-resistance-and-circuit-simplification">2.1 Electrical Resistance and Circuit Simplification</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#22-graph-theory-fundamentals">2.2 Graph Theory Fundamentals</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-modeling-circuits-as-graphs">3. Modeling Circuits as Graphs</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#31-circuit-as-a-graph">3.1 Circuit as a Graph</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#32-why-use-graphs">3.2 Why Use Graphs?</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#33-assumptions">3.3 Assumptions</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-algorithm-design-conceptual-overview">4. Algorithm Design (Conceptual Overview)</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#41-goal">4.1 Goal</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#42-key-concepts">4.2 Key Concepts</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#43-high-level-steps">4.3 High-Level Steps</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-implementation">5. Implementation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#case-studies">Case Studies</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -111,7 +147,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">5 Circuits</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Equivalent Resistance Using Graph Theory</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,11 +155,121 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="equivalent-resistance-using-graph-theory">Equivalent Resistance Using Graph Theory</h1>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>Calculating the equivalent resistance of an electrical circuit is a fundamental problem in physics and engineering. In simple cases, the problem can be solved manually using rules for series and parallel resistors. However, for more complex networks involving many components and multiple connection patterns, traditional methods become inefficient and error-prone.</p>
+<p>Graph theory provides a powerful alternative by modeling the circuit as a graph: nodes represent junctions, and edges represent resistors. This approach enables structured simplification, allows for algorithmic implementation, and is well-suited for automated analysis in modern applications such as circuit simulation software, electrical network design, and optimization.</p>
+<p>This report explores how graph theory can be used to calculate equivalent resistance systematically, highlighting the methodology, its advantages, and the computational processes involved.</p>
+<h2 id="2-background-theory">2. Background Theory</h2>
+<h3 id="21-electrical-resistance-and-circuit-simplification">2.1 Electrical Resistance and Circuit Simplification</h3>
+<ul>
+<li>
+<p><strong>Ohm’s Law:</strong><br/>
+<span class="arithmatex">\(V = IR\)</span>, where <span class="arithmatex">\(V\)</span> is voltage, <span class="arithmatex">\(I\)</span> is current, and <span class="arithmatex">\(R\)</span> is resistance.</p>
+</li>
+<li>
+<p><strong>Series Connection:</strong><br/>
+  Resistors connected end-to-end.<br/>
+  Total resistance:<br/>
+  $$
+  R_{\text{eq}} = R_1 + R_2 + \dots + R_n
+  $$</p>
+</li>
+<li>
+<p><strong>Parallel Connection:</strong><br/>
+  Resistors connected across the same two nodes.<br/>
+  Total resistance:<br/>
+  $$
+  \frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
+  $$</p>
+</li>
+</ul>
+<h3 id="22-graph-theory-fundamentals">2.2 Graph Theory Fundamentals</h3>
+<ul>
+<li><strong>Graph:</strong> A mathematical structure consisting of nodes (vertices) and connections between them (edges).</li>
+<li><strong>Undirected Graph:</strong> Each edge does not have a direction; current can flow both ways.</li>
+<li><strong>Weighted Graph:</strong> Each edge has a value (weight), which in our case represents resistance in ohms.</li>
+<li><strong>Connectivity:</strong> Paths and cycles in the graph correspond to possible current paths and resistor networks.</li>
+</ul>
+<h2 id="3-modeling-circuits-as-graphs">3. Modeling Circuits as Graphs</h2>
+<h3 id="31-circuit-as-a-graph">3.1 Circuit as a Graph</h3>
+<ul>
+<li><strong>Nodes:</strong> Represent junctions where two or more circuit elements meet.</li>
+<li><strong>Edges:</strong> Represent resistors; each edge has a weight equal to the resistor’s resistance.</li>
+<li><strong>Example:</strong><br/>
+  A resistor of 4Ω between node A and node B → edge (A, B, weight=4)</li>
+</ul>
+<h3 id="32-why-use-graphs">3.2 Why Use Graphs?</h3>
+<ul>
+<li>Structured and algorithm-friendly.</li>
+<li>Works for arbitrary resistor configurations.</li>
+<li>Can be implemented in software.</li>
+<li>Useful for detecting and simplifying patterns like loops and branches.</li>
+</ul>
+<h3 id="33-assumptions">3.3 Assumptions</h3>
+<ul>
+<li>All components are resistors (no capacitors, inductors, or sources).</li>
+<li>No directional current enforcement (undirected graph).</li>
+<li>Ideal resistors only; no temperature or frequency dependence.</li>
+</ul>
+<h2 id="4-algorithm-design-conceptual-overview">4. Algorithm Design (Conceptual Overview)</h2>
+<h3 id="41-goal">4.1 Goal</h3>
+<p>To reduce a circuit graph iteratively by identifying and simplifying:</p>
+<ul>
+<li>Series resistor chains</li>
+<li>Parallel resistor groups</li>
+<li>Nested or compound structures</li>
+</ul>
+<h3 id="42-key-concepts">4.2 Key Concepts</h3>
+<ul>
+<li><strong>Series Detection:</strong> A node connected to exactly two other nodes (excluding input/output terminals) likely lies in a series path.</li>
+<li><strong>Parallel Detection:</strong> Multiple edges between the same pair of nodes indicate parallel resistors.</li>
+<li><strong>Cycle Detection:</strong> Loops in the graph often represent more complex configurations requiring analysis.</li>
+</ul>
+<h3 id="43-high-level-steps">4.3 High-Level Steps</h3>
+<ol>
+<li>Represent the circuit as a weighted, undirected graph.</li>
+<li>Identify and reduce all series connections.</li>
+<li>Identify and reduce all parallel connections.</li>
+<li>Repeat until the graph reduces to a single equivalent resistance between input and output nodes.</li>
+</ol>
+<h2 id="5-implementation">5. Implementation</h2>
+<p>To carry out the analysis of electrical circuits using graph theory, a <a href="https://colab.research.google.com/github/OlehVorobiov/Math-2024-25-Winter/blob/main/docs/Interactives/CircuitGraph.ipynb">Python implementation</a> was developed.</p>
+<p>Three progressively complex case studies were investigated:</p>
+<ol>
+<li>A simple <strong>series/parallel</strong> circuit,  </li>
+<li><strong>Nested combination circuit</strong>,  </li>
+<li><strong>Wheatstone bridge</strong>.</li>
+</ol>
+<p>For each case, the implementation displays the original circuit diagram, constructs the corresponding graph, simplifies the circuit step-by-step using series and parallel reduction, and computes the final equivalent resistance.</p>
+<h3 id="case-studies">Case Studies</h3>
+<ul>
+<li><strong>Case Study 1:</strong> Simple Series/Parallel Circuit</li>
+<li>Description: R1 and R2 in series, in parallel with R3</li>
+</ul>
+<p><img alt="Alt text" src="../../../_pics/Diagram1.png"/>
+<img alt="Alt text" src="../../../_pics/Graph1.png"/></p>
+<p>Equivalent Resistance (A to C): 5.00Ω</p>
+<hr/>
+<ul>
+<li><strong>Case Study 2:</strong> Nested Combination Circuit </li>
+<li>Description: R1 in series with (R2 parallel R3), then parallel with R4</li>
+</ul>
+<p><img alt="Alt text" src="../../../_pics/Diagram2.png"/>
+<img alt="Alt text" src="../../../_pics/Graph2.png"/></p>
+<p>Equivalent Resistance (A to E): 5.00Ω</p>
+<hr/>
+<ul>
+<li><strong>Case Study 3:</strong> Wheatstone Bridge </li>
+<li>Description: R1, R2, R3, R4 in a bridge configuration with R5 across</li>
+</ul>
+<p><img alt="Alt text" src="../../../_pics/Diagram3.png"/>
+<img alt="Alt text" src="../../../_pics/Graph3.png"/></p>
+<p>Equivalent Resistance (A to D): 3.43Ω</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../../4%20Electromagnetism/Problem_1/" title="Problem 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-left" href="../../4%20Electromagnetism/Problem_1/" title="Simulating the Effects of the Lorentz Force on Charged Particle Motion"><span class="icon icon-circle-arrow-left"></span> Previous</a>
 <a class="btn btn-neutral float-right" href="../../6%20Statistics/Problem_1/" title="Problem 1">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>

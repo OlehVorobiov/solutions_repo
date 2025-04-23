@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Simulating the Effects of the Lorentz Force on Charged Particle Motion - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Simulating the Effects of the Lorentz Force on Charged Particle Motion";
         var mkdocs_page_input_path = "1 Physics/4 Electromagnetism/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,15 +70,27 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">4 Electromagnetism</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Simulating the Effects of the Lorentz Force on Charged Particle Motion</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-background">Theoretical Background</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#equation-of-motion">Equation of Motion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#motion-in-uniform-fields">Motion in Uniform Fields</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#trajectories">Trajectories</a>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal">5 Circuits</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../../5%20Circuits/Problem_1/">Problem 1</a>
+<li class="toctree-l2"><a class="reference internal" href="../../5%20Circuits/Problem_1/">Equivalent Resistance Using Graph Theory</a>
 </li>
 </ul>
 </li>
@@ -111,7 +123,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">4 Electromagnetism</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Simulating the Effects of the Lorentz Force on Charged Particle Motion</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,12 +131,94 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="simulating-the-effects-of-the-lorentz-force-on-charged-particle-motion">Simulating the Effects of the Lorentz Force on Charged Particle Motion</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The motion of charged particles in electromagnetic fields lies at the heart of many physical phenomena and technologies. At the center of this interaction is the <strong>Lorentz force</strong>, which describes how electric and magnetic fields influence the trajectory of a particle with charge <span class="arithmatex">\(q\)</span>. The force is given by:</p>
+<div class="arithmatex">\[
+\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})
+\]</div>
+<p>where <span class="arithmatex">\(\vec{F}\)</span> is the total force acting on the particle, <span class="arithmatex">\(\vec{E}\)</span> is the electric field, <span class="arithmatex">\(\vec{B}\)</span> is the magnetic field, and <span class="arithmatex">\(\vec{v}\)</span> is the particle's velocity.</p>
+<p>This force law is not just a theoretical construct; it is the foundation of systems ranging from mass spectrometers and cyclotrons to magnetic traps and plasma confinement devices. Its applications stretch across disciplines — from accelerator physics and electromagnetism to space science and medical imaging.</p>
+<p>Despite its relatively simple mathematical form, the Lorentz force leads to complex and sometimes counterintuitive particle trajectories, especially when both electric and magnetic fields are involved. Analytically solving the equations of motion in such cases is often impractical or impossible. That is where computational methods become indispensable.</p>
+<p>The goal of this project is to explore the effects of the Lorentz force through <strong>numerical simulations</strong>. By visualizing how particles move under different configurations of <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> fields, we gain a more intuitive understanding of the physics involved. The simulations will include cases such as uniform magnetic fields, crossed electric and magnetic fields, and combinations thereof. Parameters like field strength, initial velocity, charge, and mass will be varied to observe their impact on motion.</p>
+<p>Ultimately, this work aims to bridge theory and application — providing insights not only into particle dynamics but also into the operation of devices that harness these fundamental physical principles.</p>
+<h2 id="theoretical-background">Theoretical Background</h2>
+<p>The behavior of charged particles in electric and magnetic fields is governed by the <strong>Lorentz force</strong>, which acts as the fundamental law of motion in electromagnetic systems. The total force <span class="arithmatex">\(\vec{F}\)</span> acting on a particle with charge <span class="arithmatex">\(q\)</span> and velocity <span class="arithmatex">\(\vec{v}\)</span> in the presence of electric field <span class="arithmatex">\(\vec{E}\)</span> and magnetic field <span class="arithmatex">\(\vec{B}\)</span> is given by:</p>
+<div class="arithmatex">\[
+\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})
+\]</div>
+<p>This expression combines the effects of the electric force <span class="arithmatex">\(q\vec{E}\)</span> and the magnetic force <span class="arithmatex">\(q(\vec{v} \times \vec{B})\)</span>. The resulting trajectory of the particle depends on the initial velocity, the magnitude and direction of the fields, and the particle’s charge and mass.</p>
+<h3 id="equation-of-motion">Equation of Motion</h3>
+<p>From Newton’s second law, the acceleration of the particle is:</p>
+<div class="arithmatex">\[
+\vec{a} = \frac{d\vec{v}}{dt} = \frac{\vec{F}}{m}
+\]</div>
+<p>Substituting the Lorentz force:</p>
+<div class="arithmatex">\[
+\frac{d\vec{v}}{dt} = \frac{q}{m} (\vec{E} + \vec{v} \times \vec{B})
+\]</div>
+<p>This is a system of coupled, first-order differential equations that describe the time evolution of the particle’s velocity. By further integrating, we can obtain the position:</p>
+<div class="arithmatex">\[
+\frac{d\vec{r}}{dt} = \vec{v}
+\]</div>
+<p>Thus, we have a full system of equations for velocity and position that can be solved numerically.</p>
+<h3 id="motion-in-uniform-fields">Motion in Uniform Fields</h3>
+<ol>
+<li><strong>Only Magnetic Field Present (<span class="arithmatex">\(\vec{E} = 0\)</span>):</strong></li>
+</ol>
+<p>In the presence of a uniform magnetic field and no electric field, the particle experiences a force perpendicular to both the velocity and the field direction. This results in <strong>circular or helical motion</strong>. The radius of the circular trajectory, known as the <strong>Larmor radius</strong>, is given by:</p>
+<p>$$
+   r_L = \frac{mv_\perp}{|qB|}
+   $$</p>
+<p>where <span class="arithmatex">\(v_\perp\)</span> is the component of velocity perpendicular to the magnetic field.</p>
+<p>The corresponding <strong>cyclotron frequency</strong> (or Larmor frequency) is:</p>
+<p>$$
+   \omega_c = \frac{|qB|}{m}
+   $$</p>
+<ol>
+<li><strong>Only Electric Field Present (<span class="arithmatex">\(\vec{B} = 0\)</span>):</strong></li>
+</ol>
+<p>The motion becomes purely linear with constant acceleration:</p>
+<p>$$
+   \vec{a} = \frac{q\vec{E}}{m}
+   $$</p>
+<ol>
+<li><strong>Crossed Fields (<span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span>):</strong></li>
+</ol>
+<p>When both fields are present and perpendicular, the particle exhibits a <strong>drift motion</strong> perpendicular to both <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span>. This is known as the <strong>E × B drift</strong>, with velocity:</p>
+<p>$$
+   \vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2}
+   $$</p>
+<p>Notably, this drift velocity is <strong>independent of the particle’s charge or mass</strong>.</p>
+<h4 id="the-right-hand-rule">The Right-Hand Rule</h4>
+<p>To determine the direction of the magnetic component of the Lorentz force, we use the <strong>right-hand rule</strong>:</p>
+<ul>
+<li>Point your <strong>fingers</strong> in the direction of the particle’s velocity <span class="arithmatex">\(\vec{v}\)</span>.</li>
+<li>Curl them toward the direction of the magnetic field <span class="arithmatex">\(\vec{B}\)</span>.</li>
+<li>Your <strong>thumb</strong> then points in the direction of the magnetic force <span class="arithmatex">\(\vec{F}_L\)</span> <strong>for a positive charge</strong>.</li>
+<li>For <strong>negative charges</strong>, the magnetic force acts in the <strong>opposite direction</strong> to your thumb.</li>
+</ul>
+<p>This rule is essential when analyzing particle motion in magnetic fields, especially when electric fields are also present.</p>
+<p><img alt="Illustration of the right-hand rule applied to the magnetic part of the Lorentz force" src="../../../_pics/RightHandRule.gif"/></p>
+<p><em>Figure 1: Using the right-hand rule to determine the direction of the magnetic force <span class="arithmatex">\(\vec{F}_L = q(\vec{v} \times \vec{B})\)</span>. For a negative charge, the force is in the opposite direction.</em></p>
+<hr/>
+<p><img alt="Charged particles in crossed electric and magnetic fields" src="../../../_pics/LorentzForceDiagram.png"/></p>
+<p><em>Figure 2: Motion of positive and negative particles in perpendicular electric and magnetic fields. The Lorentz force <span class="arithmatex">\(\vec{F}_L\)</span> acts in opposite directions depending on the charge sign.</em></p>
+<p>These fundamental results form the basis for understanding more complex trajectories and for interpreting the results of simulations. In the following sections, these principles will be applied to numerically simulate and visualize particle motion under various configurations of <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span>.</p>
+<h2 id="trajectories">Trajectories</h2>
+<p>Scenario 1: Uniform Magnetic Field (B along Z, E = 0)</p>
+<p><img alt="Alt Text" src="../../../_pics/Trajectory1.png"/></p>
+<p>Scenario 2: Combined Electric and Magnetic Fields</p>
+<p><img alt="Alt Text" src="../../../_pics/Trajectory2.png"/></p>
+<p>Scenario 3: Crossed Electric and Magnetic Fields (E ⊥ B)</p>
+<p><img alt="Alt Text" src="../../../_pics/Trajectory3.png"/></p>
+<p>Parameter Exploration: Vary initial velocity</p>
+<p><img alt="Alt Text" src="../../../_pics/Trajectory4.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
 <a class="btn btn-neutral float-left" href="../../3%20Waves/Problem_1/" title="Problem 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../../5%20Circuits/Problem_1/" title="Problem 1">Next <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-right" href="../../5%20Circuits/Problem_1/" title="Equivalent Resistance Using Graph Theory">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">
