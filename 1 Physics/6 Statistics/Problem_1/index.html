@@ -120,6 +120,141 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="exploring-the-central-limit-theorem-through-simulations">Exploring the Central Limit Theorem through Simulations</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The Central Limit Theorem (CLT) is a foundational principle in probability and statistics. It states that, under certain conditions, the sampling distribution of the sample mean approaches a normal distribution as the sample size increases, regardless of the original distribution of the population.</p>
+<p>Understanding the CLT is crucial because it explains why the normal distribution appears so frequently in practice. Simulations offer an intuitive and hands-on method for visualizing and confirming the behavior predicted by the theorem.</p>
+<p>This report explores the CLT through computational experiments by sampling from different types of distributions and observing the convergence of the sample mean's distribution toward normality.</p>
+<h2 id="theoretical-background">Theoretical Background</h2>
+<p>The Central Limit Theorem can be formally stated as follows:</p>
+<p>If <span class="arithmatex">\(X_1, X_2, \dots, X_n\)</span> are independent and identically distributed (i.i.d.) random variables with mean <span class="arithmatex">\(\mu\)</span> and finite variance <span class="arithmatex">\(\sigma^2\)</span>, then as <span class="arithmatex">\(n \to \infty\)</span>:</p>
+<div class="arithmatex">\[
+\frac{\overline{X}_n - \mu}{\sigma/\sqrt{n}} \rightarrow \mathcal{N}(0, 1)
+\]</div>
+<p>where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\overline{X}_n\)</span> is the sample mean  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mu\)</span> is the population mean  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(\sigma^2\)</span> is the population variance  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathcal{N}(0, 1)\)</span> denotes the standard normal distribution</p>
+</li>
+</ul>
+<p>This result explains why the normal distribution arises so often in statistics — regardless of the underlying population distribution, the sample mean will follow a normal distribution for sufficiently large <span class="arithmatex">\(n\)</span>.</p>
+<h2 id="methodology">Methodology</h2>
+<h3 id="tools-and-libraries">Tools and Libraries</h3>
+<p>The simulations were conducted using Python, with the following libraries:</p>
+<ul>
+<li>
+<p>NumPy: for random number generation and basic statistical operations</p>
+</li>
+<li>
+<p>Matplotlib and Seaborn: for data visualization</p>
+</li>
+</ul>
+<h3 id="population-distributions">Population Distributions</h3>
+<p>Three types of distributions were selected to represent different characteristics:</p>
+<ul>
+<li>
+<p><strong>Uniform distribution</strong>: symmetric with bounded support</p>
+</li>
+<li>
+<p><strong>Exponential distribution</strong>: highly skewed and unbounded on the positive side</p>
+</li>
+<li>
+<p><strong>Binomial distribution</strong>: discrete distribution with two outcomes</p>
+</li>
+</ul>
+<p>For each distribution:</p>
+<ul>
+<li>
+<p>A large population dataset (e.g., 100,000 points) was generated</p>
+</li>
+<li>
+<p>Sampling was performed at various sample sizes: <span class="arithmatex">\(n = 5, 10, 30, 50\)</span></p>
+</li>
+</ul>
+<h3 id="sampling-procedure">Sampling Procedure</h3>
+<p>For each sample size:</p>
+<ul>
+<li>
+<p>A large number of samples (e.g., 1,000) were drawn</p>
+</li>
+<li>
+<p>The mean of each sample was calculated</p>
+</li>
+<li>
+<p>The resulting sampling distributions of the means were plotted</p>
+</li>
+</ul>
+<p>By comparing the sampling distributions at different sample sizes, the convergence towards normality was analyzed and visualized.</p>
+<h2 id="simulation">Simulation</h2>
+<p>The following plots show the sampling distributions of the sample mean for increasing sample sizes (<span class="arithmatex">\(n = 5, 10, 30, 50\)</span>), taken from three different population distributions: Uniform, Exponential, and Binomial. Each histogram is based on 1,000 samples, with the population mean marked by a red dashed line.</p>
+<p>These simulations demonstrate the Central Limit Theorem in action, though not always in a textbook-perfect way:</p>
+<ul>
+<li><strong>Uniform Distribution</strong>: The sampling distributions of the mean exhibit a clear trend toward normality as the sample size increases. Even at <span class="arithmatex">\(n=5\)</span>, the distribution is roughly symmetric and bell-shaped, although somewhat rough and irregular due to smaller sample averaging. As <span class="arithmatex">\(n\)</span> increases to 10, 30, and finally 50, the distributions become increasingly concentrated around the population mean (0.5), and the shape becomes smoother and more Gaussian.</li>
+</ul>
+<p>This case confirms the Central Limit Theorem effectively. The original uniform distribution is flat, but the sample means quickly aggregate toward a normal distribution. No significant skewness is observed in any of the plots; the irregularities at lower <span class="arithmatex">\(n\)</span> are due to sampling noise and limited averaging. By <span class="arithmatex">\(n=30\)</span> and especially <span class="arithmatex">\(n=50\)</span>, the shape closely resembles a normal distribution both visually and in symmetry.</p>
+<ul>
+<li>
+<p><strong>Exponential Distribution</strong>: (Assuming from previous screenshots) starts highly skewed. The sampling distribution slowly becomes more symmetric and centered around the mean. However, even at <span class="arithmatex">\(n=30\)</span> or <span class="arithmatex">\(n=50\)</span>, a small right-skew might remain due to the heavy tail of the population.</p>
+</li>
+<li>
+<p><strong>Binomial Distribution</strong>: Since the original distribution is already symmetric (with <span class="arithmatex">\(p=0.5\)</span>), convergence is more visible. At <span class="arithmatex">\(n=30\)</span>, the sampling distribution is already close to a bell curve, but due to the discrete nature of the data, it appears a bit jagged even at <span class="arithmatex">\(n=50\)</span>.</p>
+</li>
+</ul>
+<p>These visualizations show that while the Central Limit Theorem does hold, the <strong>rate of convergence</strong> and the <strong>smoothness</strong> of the sampling distribution depend on both the original distribution’s shape and whether the data is discrete or continuous.</p>
+<p>The simulation can be found <a href="https://colab.research.google.com/github/OlehVorobiov/Math-2024-25-Winter/blob/main/docs/Interactives/CentralLimitTheory.ipynb">here</a>.</p>
+<h3 id="uniform">Uniform</h3>
+<p><img alt="Alt text" src="../../../_pics/UDn5.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/UDn10.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/UDn30.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/UDn50.png"/></p>
+<h3 id="exponential">Exponential</h3>
+<p><img alt="Alt text" src="../../../_pics/EDn5.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/EDn10.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/EDn30.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/EDn50.png"/></p>
+<h3 id="binomial">Binomial</h3>
+<p><img alt="Alt text" src="../../../_pics/BDn5.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/BDn10.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/BDn30.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/BDn50.png"/></p>
+<h2 id="practical-applications">Practical Applications</h2>
+<p>The Central Limit Theorem is not just a theoretical result; it has wide-reaching practical value across disciplines:</p>
+<ul>
+<li>
+<p><strong>Statistical Inference</strong>: Most confidence intervals and hypothesis tests are based on the assumption of normality in sample means. Thanks to the CLT, these tools remain reliable even when sampling from non-normal populations.</p>
+</li>
+<li>
+<p><strong>Quality Control</strong>: In manufacturing, averages of product measurements are often tracked. The CLT justifies using control charts and standard thresholds based on normal distributions, even if the underlying measurement distributions are not normal.</p>
+</li>
+<li>
+<p><strong>Finance and Risk Management</strong>: Portfolio returns over time are modeled using the normal distribution. The CLT provides the justification for aggregating returns and assuming a bell curve behavior in risk modeling.</p>
+</li>
+<li>
+<p><strong>Social Sciences and Biology</strong>: Sample averages are foundational in survey analysis, clinical trials, and experiments where underlying variables often don’t follow normal distributions, but the means can be treated as such thanks to the CLT.</p>
+</li>
+</ul>
+<p>In short, the CLT underpins much of modern applied statistics and allows for robust inference from data in a wide range of contexts.</p>
+<h2 id="discussion">Discussion</h2>
+<p>The simulations confirm the core intuition of the Central Limit Theorem: regardless of the original distribution — whether flat (uniform), discrete (binomial), or skewed (exponential) — the distribution of the sample mean tends toward normality as the sample size increases.</p>
+<p>However, the rate and appearance of this convergence vary:
+- Uniform distribution converged rapidly and showed a symmetric bell shape by <span class="arithmatex">\(n = 30\)</span>.
+- Binomial, already symmetric at the population level, showed early convergence but remained jagged due to its discrete nature.
+- (Pending Exponential visuals) The exponential distribution, being heavily skewed, likely converges more slowly and retains some asymmetry even at larger <span class="arithmatex">\(n\)</span>.</p>
+<p>Additionally, the smoothness of the sampling distributions improves as <span class="arithmatex">\(n\)</span> increases, and the standard deviation of sample means becomes tighter — as predicted by the formula <span class="arithmatex">\(\sigma / \sqrt{n}\)</span>.</p>
+<p>These results reinforce both the power and the limits of the CLT: it works, but not instantly, and its appearance is shaped by the nature of the original data.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Through simulation and visual analysis, this report has demonstrated the Central Limit Theorem in action. As sample sizes grow, the sampling distribution of the mean becomes increasingly normal, even when drawn from non-normal populations.</p>
+<p>This empirical approach shows how the CLT serves as a bridge between the unpredictable nature of raw data and the structured, predictable behavior of sample averages. It is this principle that allows statisticians and scientists to draw valid conclusions from limited data in real-world scenarios.</p>
+<p>While convergence depends on factors such as distribution shape, discreteness, and variance, the overall trend is unmistakable: large enough samples tend to behave normally — and this insight is foundational to the field of statistics.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

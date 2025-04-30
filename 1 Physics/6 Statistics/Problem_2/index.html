@@ -120,6 +120,273 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h1 id="estimating-pi-using-monte-carlo-methods">Estimating <span class="arithmatex">\(\pi\)</span> Using Monte Carlo Methods</h1>
+<p><em>Part 1: Geometric Probability with a Circle</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>Monte Carlo methods are a class of computational algorithms that rely on repeated random sampling to obtain numerical results. These techniques are widely used in fields such as physics, finance, and computer science to simulate systems with a high degree of complexity or randomness. One of the most elegant and accessible applications of Monte Carlo simulation is the estimation of the mathematical constant <span class="arithmatex">\(\pi\)</span> through geometric probability.</p>
+<p>In this part of the report (Part 1), we focus on estimating <span class="arithmatex">\(\pi\)</span> by simulating random points within a square that bounds a unit circle. This method is visually intuitive, mathematically simple, and demonstrates how randomness can be used to solve problems in numerical analysis and statistical physics.</p>
+<h2 id="theoretical-foundation">Theoretical Foundation</h2>
+<p>Consider a square of side length 2 centered at the origin. Inscribed within this square is a circle of radius 1, also centered at the origin. The area of the square is:</p>
+<div class="arithmatex">\[
+A_{\text{square}} = (2)^2 = 4
+\]</div>
+<p>The area of the circle is:</p>
+<div class="arithmatex">\[
+A_{\text{circle}} = \pi r^2 = \pi \cdot 1^2 = \pi
+\]</div>
+<p>If we generate a large number of random points uniformly distributed within the square, the probability that a point falls inside the circle is equal to the ratio of the circle's area to the square's area:</p>
+<div class="arithmatex">\[
+P = \frac{A_{\text{circle}}}{A_{\text{square}}} = \frac{\pi}{4}
+\]</div>
+<p>Solving for <span class="arithmatex">\(\pi\)</span>, we get:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \cdot \frac{N_{\text{circle}}}{N_{\text{total}}}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(N_{\text{circle}}\)</span> is the number of points that fall inside the circle,
+- <span class="arithmatex">\(N_{\text{total}}\)</span> is the total number of points generated.</p>
+<p>A point <span class="arithmatex">\((x, y)\)</span> lies inside the circle if it satisfies the inequality:</p>
+<div class="arithmatex">\[
+x^2 + y^2 \leq 1
+\]</div>
+<p>By simulating a large number of such points and applying the formula above, we can estimate the value of <span class="arithmatex">\(\pi\)</span>. The larger the number of samples, the closer the estimate tends to be</p>
+<h2 id="simulation">Simulation</h2>
+<p>You can try choosing the number of points yourself <a href="https://colab.research.google.com/github/OlehVorobiov/Math-2024-25-Winter/blob/main/docs/Interactives/PiCircleEstimation.ipynb">here</a>.</p>
+<p><img alt="Alt text" src="../../../_pics/PiCircle1000.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/PiCircle10000.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/PiCircle100000.png"/></p>
+<p>As seen in the plots above, the accuracy of the <span class="arithmatex">\(\pi\)</span> estimation improves as the number of randomly generated points increases. With only 1,000 points, the estimate fluctuates significantly, and the distribution appears uneven. At 10,000 points, the circle becomes more densely filled, and the estimation stabilizes. At 100,000 points, the estimate of <span class="arithmatex">\(\pi\)</span> closely approaches the actual value, and the visual difference between inside and outside points becomes much more refined.</p>
+<p>The table below further supports this observation by listing 10 separate simulations for each point count. The averages clearly converge toward the true value of <span class="arithmatex">\(\pi \approx 3.1416\)</span> as the number of samples grows. This demonstrates the law of large numbers in action: increasing the number of trials reduces variance and yields more accurate results in probabilistic estimations.</p>
+<h3 id="table-monte-carlo-estimations-of-pi-with-varying-sample-sizes">Table: Monte Carlo Estimations of <span class="arithmatex">\(\pi\)</span> with Varying Sample Sizes</h3>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>1,000 Points</th>
+<th>10,000 Points</th>
+<th>100,000 Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3.080</td>
+<td>3.1476</td>
+<td>3.1350</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3.120</td>
+<td>3.1500</td>
+<td>3.14676</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3.108</td>
+<td>3.1376</td>
+<td>3.14264</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3.132</td>
+<td>3.1696</td>
+<td>3.14280</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3.092</td>
+<td>3.1644</td>
+<td>3.14624</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3.104</td>
+<td>3.1508</td>
+<td>3.13724</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3.176</td>
+<td>3.1316</td>
+<td>3.14308</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3.032</td>
+<td>3.1904</td>
+<td>3.14808</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3.108</td>
+<td>3.1164</td>
+<td>3.15408</td>
+</tr>
+<tr>
+<td>10</td>
+<td>3.012</td>
+<td>3.1904</td>
+<td>3.13824</td>
+</tr>
+<tr>
+<td><strong>Average</strong></td>
+<td><strong>3.0964</strong></td>
+<td><strong>3.15488</strong></td>
+<td><strong>3.143816</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this part of the report, we applied the Monte Carlo method to estimate the value of <span class="arithmatex">\(\pi\)</span> using a simple geometric probability model. By generating uniformly distributed random points within a square and measuring how many fell inside the inscribed unit circle, we derived an approximation for <span class="arithmatex">\(\pi\)</span> based on the ratio of areas.</p>
+<p>Through visualizations and repeated simulations, we observed that the accuracy of the estimate improves significantly with the number of random samples. At low sample sizes, the estimates fluctuate noticeably, but as the number of points increases, the approximation stabilizes and converges toward the true value of <span class="arithmatex">\(\pi\)</span>. This aligns with the law of large numbers and highlights a core strength of Monte Carlo methods: their simplicity and reliability when scaled.</p>
+<p>Overall, this approach not only provides an intuitive demonstration of how randomness can be used to solve deterministic problems, but also introduces key statistical ideas such as convergence, variance, and computational trade-offs—foundational principles for more advanced simulations in physics and other scientific fields.</p>
+<hr/>
+<p><em>Part 2: Buffon’s Needle Experiment</em></p>
+<h2 id="introduction_1">Introduction</h2>
+<p>In the 18th century, the French mathematician Georges-Louis Leclerc, Comte de Buffon, proposed one of the earliest known problems in geometric probability — now known as <em>Buffon’s Needle</em>. The question was simple: if a needle is dropped onto a floor marked with equally spaced parallel lines, what is the probability that it will cross one of the lines?</p>
+<p>Surprisingly, this probability turns out to be related to the value of <span class="arithmatex">\(\pi\)</span>. This makes Buffon’s Needle one of the oldest and most elegant probabilistic methods to estimate <span class="arithmatex">\(\pi\)</span>, and it provides a fascinating example of how geometry, randomness, and probability intersect. In this part of the report, we explore this method both theoretically and computationally through Monte Carlo simulation.</p>
+<h2 id="theoretical-foundation_1">Theoretical Foundation</h2>
+<p>Imagine a floor with horizontal parallel lines spaced a distance <span class="arithmatex">\(d\)</span> apart. A needle of length <span class="arithmatex">\(l\)</span> is randomly dropped onto the floor. For the case where the needle length satisfies <span class="arithmatex">\(l \leq d\)</span>, the probability that it crosses one of the lines is given by:</p>
+<div class="arithmatex">\[
+P = \frac{2l}{\pi d}
+\]</div>
+<p>To understand this, consider two random variables:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(x\)</span>: the perpendicular distance from the needle's center to the nearest line, uniformly distributed in <span class="arithmatex">\([0, \frac{d}{2}]\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\theta\)</span>: the acute angle between the needle and the lines, uniformly distributed in <span class="arithmatex">\([0, \frac{\pi}{2}]\)</span>.</p>
+</li>
+</ul>
+<p>A crossing occurs if the vertical projection of the needle half-length exceeds the distance to the nearest line:</p>
+<div class="arithmatex">\[
+\frac{l}{2} \sin(\theta) \geq x
+\]</div>
+<p>By integrating over the joint probability distribution of <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(\theta\)</span>, the probability of a crossing yields the formula above. Rearranging this, we can estimate <span class="arithmatex">\(\pi\)</span> by observing the frequency of crossings in a simulation:</p>
+<div class="arithmatex">\[
+\pi \approx \frac{2l \cdot N}{d \cdot C}
+\]</div>
+<p>Where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(N\)</span> is the total number of needle drops,</p>
+</li>
+<li>
+<p><span class="arithmatex">\(C\)</span> is the number of times the needle crosses a line.</p>
+</li>
+</ul>
+<p>This formula allows us to estimate <span class="arithmatex">\(\pi\)</span> empirically, using randomness and geometry. As with the circle-based method, accuracy improves with the number of trials, although convergence tends to be slower due to the geometric nature of the crossing condition.</p>
+<h2 id="simulation_1">Simulation</h2>
+<p>To put the theory into practice, we simulate Buffon’s Needle experiment using different numbers of needle drops: 100, 10,000, and 100,000. Each drop involves generating a random angle and a random position, then checking whether the needle crosses one of the horizontal lines. This process allows us to estimate <span class="arithmatex">\(\pi\)</span> based on the proportion of crossings, as derived in the theoretical section.</p>
+<p>You can try choosing the number of needle drops yourself <a href="https://colab.research.google.com/github/OlehVorobiov/Math-2024-25-Winter/blob/main/docs/Interactives/PiBuffonNeedleEstimation.ipynb">here</a>.</p>
+<p><img alt="Alt text" src="../../../_pics/PiBuffonNeedle100.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/PiBuffonNeedle10000.png"/></p>
+<p><img alt="Alt text" src="../../../_pics/PiBuffonNeedle100000.png"/></p>
+<p>In the visualizations above, red needles indicate those that <strong>cross</strong> a line, while blue needles <strong>do not</strong>. This coloring provides a clear geometric interpretation of the condition used to determine whether a crossing occurs.</p>
+<p>To avoid overloading the plot, we limit the visualization to a <strong>maximum of around 300 needles</strong> even if the total number of simulated drops is much higher. This makes the figure readable while still accurately representing the behavior of the method. The full sample size, however, is used for the numerical estimation of <span class="arithmatex">\(\pi\)</span>, which is summarized in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>100 Drops</th>
+<th>10,000 Drops</th>
+<th>100,000 Drops</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3.030303</td>
+<td>3.182686</td>
+<td>3.137452</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3.571429</td>
+<td>3.125977</td>
+<td>3.155769</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3.225806</td>
+<td>3.163556</td>
+<td>3.143666</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3.030303</td>
+<td>3.151592</td>
+<td>3.146633</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3.225806</td>
+<td>3.100775</td>
+<td>3.145346</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3.448276</td>
+<td>3.216468</td>
+<td>3.121488</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2.631579</td>
+<td>3.178640</td>
+<td>3.118082</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3.571429</td>
+<td>3.153579</td>
+<td>3.141592</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2.631579</td>
+<td>3.105590</td>
+<td>3.155669</td>
+</tr>
+<tr>
+<td>10</td>
+<td>3.448276</td>
+<td>3.241491</td>
+<td>3.154475</td>
+</tr>
+<tr>
+<td><strong>Average</strong></td>
+<td><strong>3.181479</strong></td>
+<td><strong>3.162035</strong></td>
+<td><strong>3.142017</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="conclusion_1">Conclusion</h2>
+<p>Buffon’s Needle provides a fascinating historical and geometric approach to estimating <span class="arithmatex">\(\pi\)</span> using randomness. Through simulation, we observed how the proportion of needle crossings can be translated into an approximation of <span class="arithmatex">\(\pi\)</span> using a simple yet elegant probabilistic formula.</p>
+<p>However, this method shows significant variance at low sample sizes, as demonstrated in the table. With only 100 drops, the estimates fluctuate dramatically. At 10,000 and 100,000 drops, the estimation stabilizes and begins to approach the true value of <span class="arithmatex">\(\pi\)</span>, though not as tightly as the circle-based method.</p>
+<p>While visually engaging and conceptually rich, Buffon’s Needle converges more slowly and is more sensitive to sample size, making it a good educational example but a less efficient estimator in practice.</p>
+<hr/>
+<h2 id="final-comparison-and-overall-conclusion">Final Comparison and Overall Conclusion</h2>
+<p>Both the circle-based and Buffon’s Needle Monte Carlo methods provide effective ways to estimate the value of <span class="arithmatex">\(\pi\)</span>, but they differ in simplicity, efficiency, and convergence behavior.</p>
+<h3 id="accuracy-and-convergence">Accuracy and Convergence:</h3>
+<ul>
+<li>The <strong>circle method</strong> produced estimates with relatively low variance, even at moderate sample sizes. Its average estimate with 100,000 points was <strong>3.143816</strong>, closely matching the known value of <span class="arithmatex">\(\pi\)</span>.</li>
+<li>In contrast, <strong>Buffon’s Needle</strong> showed greater variability, especially at low drop counts. With 100,000 drops, it achieved a respectable average of <strong>3.142017</strong>, but required more samples to reach comparable stability.</li>
+</ul>
+<h3 id="computational-considerations">Computational Considerations:</h3>
+<ul>
+<li>The circle method is computationally straightforward, requiring only basic distance checks in 2D space.</li>
+<li>Buffon’s method involves trigonometric functions and more nuanced geometric constraints, which adds a layer of complexity and slower convergence.</li>
+</ul>
+<h3 id="educational-value">Educational Value:</h3>
+<ul>
+<li>Buffon’s Needle stands out for its historical importance and the way it links geometry, randomness, and probability in a tangible way.</li>
+<li>The circle method is more practical for teaching basic Monte Carlo estimation and convergence principles.</li>
+</ul>
+<h3 id="final-thoughts">Final Thoughts:</h3>
+<p>In conclusion, both simulations demonstrate how randomness can be used to solve deterministic mathematical problems. While the circle-based method is more efficient and precise for estimating <span class="arithmatex">\(\pi\)</span>, Buffon’s Needle offers a unique and intellectually rich perspective that connects modern simulation with classical probability. Together, they highlight the versatility of Monte Carlo methods and their value in both computation and education.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
