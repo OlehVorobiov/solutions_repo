@@ -37,7 +37,9 @@ $$
 $$
 
 Where:
+
 - $N_{\text{circle}}$ is the number of points that fall inside the circle,
+
 - $N_{\text{total}}$ is the total number of points generated.
 
 A point $(x, y)$ lies inside the circle if it satisfies the inequality:
