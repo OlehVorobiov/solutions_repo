@@ -120,6 +120,181 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="measuring-earths-gravitational-acceleration-using-a-pendulum-simulation-based">Measuring Earth's Gravitational Acceleration Using a Pendulum (Simulation-Based)</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The acceleration due to gravity, denoted as <span class="arithmatex">\(g\)</span>, is one of the most fundamental constants in physics. It governs the motion of falling objects, the behavior of projectiles, and is crucial in engineering, astronomy, and many other domains. One classic method of determining <span class="arithmatex">\(g\)</span> is through the use of a simple pendulum, where the period of oscillation is directly related to the gravitational force acting on it.</p>
+<p>In this report, we simulate the experiment using Python. The simulation mimics a real-life setup by adding controlled noise to the timing data, allowing us to practice data collection, averaging, and error analysis without the variability of physical equipment. This approach highlights the core concepts of experimental measurement and uncertainty propagation.</p>
+<hr/>
+<h2 id="theoretical-background">Theoretical Background</h2>
+<h3 id="pendulum-equation">Pendulum Equation</h3>
+<p>For small angular displacements (less than 15°), the period <span class="arithmatex">\(T\)</span> of a simple pendulum is given by:</p>
+<div class="arithmatex">\[
+T = 2\pi \sqrt{\frac{L}{g}}
+\]</div>
+<p>where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(T\)</span> is the period in seconds (s),</p>
+</li>
+<li>
+<p><span class="arithmatex">\(L\)</span> is the length of the pendulum in meters (m),</p>
+</li>
+<li>
+<p><span class="arithmatex">\(g\)</span> is the gravitational acceleration in meters per second squared (<span class="arithmatex">\(\mathrm{m/s^2}\)</span>),</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\pi \approx 3.1416\)</span>.</p>
+</li>
+</ul>
+<p>Solving this equation for <span class="arithmatex">\(g\)</span>:</p>
+<div class="arithmatex">\[
+g = \frac{4\pi^2 L}{T^2}
+\]</div>
+<h3 id="uncertainty-propagation">Uncertainty Propagation</h3>
+<p>In practice, measurements are not exact. Each value has an associated uncertainty:
+- <span class="arithmatex">\(\Delta L\)</span>: uncertainty in pendulum length,
+- <span class="arithmatex">\(\Delta T\)</span>: uncertainty in period measurement.</p>
+<p>We propagate uncertainty into the final value of <span class="arithmatex">\(g\)</span> using:</p>
+<div class="arithmatex">\[
+\Delta g = \sqrt{ \left( \frac{4\pi^2}{T^2} \cdot \Delta L \right)^2 + \left( \frac{8\pi^2 L}{T^3} \cdot \Delta T \right)^2 }
+\]</div>
+<p>Due to the squared dependence of <span class="arithmatex">\(T\)</span> in the denominator, uncertainty in time has a stronger influence on the final result than uncertainty in length.</p>
+<hr/>
+<h2 id="simulation-method">Simulation Method</h2>
+<p>The simulation assumes:</p>
+<ul>
+<li>
+<p>True gravitational acceleration: <span class="arithmatex">\(g = 9.81 \, \text{m/s}^2\)</span>,</p>
+</li>
+<li>
+<p>Pendulum length: <span class="arithmatex">\(L = 1.00 \pm 0.005 \, \text{m}\)</span>,</p>
+</li>
+<li>
+<p>10 trials, each measuring the time for 10 oscillations,</p>
+</li>
+<li>
+<p>Random timing noise: standard deviation of <span class="arithmatex">\(0.3\)</span> seconds over 10 oscillations.</p>
+</li>
+</ul>
+<p>Each trial generates a noisy time for 10 swings, which is then divided by 10 to estimate the period.</p>
+<p>You can try simulating yourself <a href="https://colab.research.google.com/github/OlehVorobiov/Math-2024-25-Winter/blob/main/docs/Interactives/PendulumSimulation.ipynb">here</a></p>
+<hr/>
+<h2 id="data-collection">Data Collection</h2>
+<p>The table below shows the results of the 10 simulated timing measurements and their calculated periods:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Trial</th>
+<th style="text-align: right;">Time for 10 Oscillations (s)</th>
+<th style="text-align: right;">Period (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">20.210</td>
+<td style="text-align: right;">2.021</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">20.019</td>
+<td style="text-align: right;">2.002</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">20.255</td>
+<td style="text-align: right;">2.025</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">20.518</td>
+<td style="text-align: right;">2.052</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">19.990</td>
+<td style="text-align: right;">1.999</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">19.990</td>
+<td style="text-align: right;">1.999</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">20.534</td>
+<td style="text-align: right;">2.053</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">20.291</td>
+<td style="text-align: right;">2.029</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">19.920</td>
+<td style="text-align: right;">1.992</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">20.223</td>
+<td style="text-align: right;">2.022</td>
+</tr>
+</tbody>
+</table>
+<p>Below is the plot showing all 10 trials, with individual error bars representing the simulated timing noise:</p>
+<h2 id="_1"><img alt="Simulated Pendulum Period Measurements" src="../../../_pics/pendulum_simulation_plot.png"/></h2>
+<h2 id="data-analysis">Data Analysis</h2>
+<p>From the 10 simulated trials, we calculate:</p>
+<ul>
+<li>
+<p><strong>Mean Period</strong>: <span class="arithmatex">\(T = 2.0195 \, \text{s}\)</span></p>
+</li>
+<li>
+<p><strong>Standard Deviation</strong>: <span class="arithmatex">\(\sigma_T = 0.0217 \, \text{s}\)</span></p>
+</li>
+<li>
+<p><strong>Uncertainty in Mean Period</strong>: <span class="arithmatex">\(\Delta T = \frac{\sigma_T}{\sqrt{10}} \approx 0.0069 \, \text{s}\)</span></p>
+</li>
+</ul>
+<p>Substituting into the formula for <span class="arithmatex">\(g\)</span>:</p>
+<div class="arithmatex">\[
+g = \frac{4\pi^2 L}{T^2} = \frac{4\pi^2 \cdot 1.00}{(2.0195)^2} \approx 9.68 \, \text{m/s}^2
+\]</div>
+<p>And the uncertainty:</p>
+<div class="arithmatex">\[
+\Delta g \approx 0.08 \, \text{m/s}^2
+\]</div>
+<p>So, the final result is:</p>
+<div class="arithmatex">\[
+g = 9.68 \pm 0.08 \, \text{m/s}^2
+\]</div>
+<ul>
+<li><strong>Percentage Error</strong>: <span class="arithmatex">\(\approx 1.33\%\)</span> from the true value <span class="arithmatex">\(g = 9.81 \, \text{m/s}^2\)</span></li>
+</ul>
+<hr/>
+<h2 id="results">Results</h2>
+<p>The simulation produces realistic, slightly noisy period measurements resembling what might be seen with a stopwatch in a classroom experiment. The estimated value of <span class="arithmatex">\(g\)</span> is reasonably close to the actual gravitational acceleration, with a small error margin.</p>
+<p>Most of the uncertainty comes from variability in timing, reinforcing how sensitive the calculation is to small errors in the period. This aligns with the theoretical expectations.</p>
+<hr/>
+<h2 id="discussion-of-uncertainty-and-its-impact">Discussion of Uncertainty and Its Impact</h2>
+<p>This simulation incorporates two major sources of uncertainty:</p>
+<ol>
+<li>
+<p><strong>Length Measurement (<span class="arithmatex">\(\Delta L\)</span>)</strong>:<br/>
+   The pendulum length was set at <span class="arithmatex">\(L = 1.00 \pm 0.005 \, \text{m}\)</span>. Since <span class="arithmatex">\(L\)</span> appears in the numerator of the formula for <span class="arithmatex">\(g\)</span>, small errors in <span class="arithmatex">\(L\)</span> result in proportional but relatively mild effects on the result.</p>
+</li>
+<li>
+<p><strong>Timing Variability (<span class="arithmatex">\(\Delta T\)</span>)</strong>:<br/>
+   The time for 10 oscillations was affected by simulated random noise, mimicking human reaction error or a low-resolution stopwatch. Because <span class="arithmatex">\(T\)</span> is squared in the formula for <span class="arithmatex">\(g\)</span>, even slight errors in <span class="arithmatex">\(T\)</span> lead to larger deviations in the result. This is confirmed in the uncertainty formula, where the timing term contributes significantly more than the length term.</p>
+</li>
+</ol>
+<p>The final uncertainty in <span class="arithmatex">\(g\)</span> (<span class="arithmatex">\(\Delta g = 0.08 \, \text{m/s}^2\)</span>) was dominated by the uncertainty in timing. This highlights the importance of repeated measurements and averaging, especially in timing-based experiments.</p>
+<p>Despite these uncertainties, the simulation achieved a result within 1.33% of the accepted value, validating both the method and the importance of careful measurement design.</p>
+<hr/>
+<h2 id="conclusion">Conclusion</h2>
+<p>The pendulum remains a simple yet powerful tool to measure gravitational acceleration. Even when simulated, the experiment teaches important lessons about measurement uncertainty, data handling, and analysis. The result — <span class="arithmatex">\(g = 9.68 \pm 0.08 \, \text{m/s}^2\)</span> — confirms the validity of the method, especially when repeated trials and averaging are used to reduce error.</p>
+<p>Simulation allowed for control and repeatability, making it an effective alternative for understanding the core concepts of experimental physics.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
