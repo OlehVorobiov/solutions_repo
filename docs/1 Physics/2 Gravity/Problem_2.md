@@ -142,7 +142,9 @@ v_3 = \sqrt{\frac{2GM_{\odot}}{r}}
 $$
 
 Where:
+
 - \( G = 6.674 \times 10^{-11} \, \text{m}^3/\text{kg} \cdot \text{s}^2 \)
+
 - \( M_{\odot} = 1.989 \times 10^{30} \, \text{kg} \)
 
 Plugging in the numbers:
