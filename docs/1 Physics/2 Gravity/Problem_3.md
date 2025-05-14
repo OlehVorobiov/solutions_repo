@@ -4,169 +4,253 @@
 
 ## Introduction
 
-When an object is released from a moving rocket near Earth, its trajectory is determined by the gravitational pull of the Earth and the object's initial velocity and position. Understanding these trajectories is essential in space mission design, particularly for satellite deployment, reentry planning, and escape maneuvers.
+When a payload is released from a spacecraft near Earth, its motion is determined by Earth's gravity. Depending on its initial speed and direction, it can fall back to Earth, enter a stable orbit, or escape Earth’s gravitational field.
 
-This report analyzes the physical principles governing these trajectories, focusing on the classification of orbital paths—elliptical, parabolic, or hyperbolic—and the factors influencing them. We then establish a mathematical model to simulate the payload's motion under Earth's gravity.
+This project simulates and analyzes such trajectories using Newtonian mechanics and numerical methods. The goal is to develop a tool that models the payload’s motion, visualizes its path, and classifies the resulting trajectory. This analysis is directly relevant to applications like satellite deployment, reentry planning, and escape missions.
 
 ## Theoretical Background
 
-### Newtonian Gravity
+### Gravitational Force
 
-The force between two masses under Newtonian gravity is given by:
-
-$$
-F = G \frac{m_1 m_2}{r^2}
-$$
-
-Where:
-
-- \( F \) is the gravitational force,
-
-- \( G \approx 6.674 \times 10^{-11} \, \text{m}^3\text{kg}^{-1}\text{s}^{-2} \) is the gravitational constant,
-
-- \( m_1 \) and \( m_2 \) are the masses of Earth and the payload,
-
-- \( r \) is the distance between the centers of the two masses.
-
-For a small payload near Earth, the motion is dominated by Earth's gravitational field:
+The gravitational force acting on a payload of mass $m$ at a distance $r$ from Earth’s center is:
 
 $$
-F = m \cdot a = G \frac{M_E m}{r^2} \Rightarrow a = \frac{G M_E}{r^2}
+F = \frac{G M m}{r^2}
 $$
 
-### Gravitational Potential Energy and Escape Velocity
+where:
 
-The gravitational potential energy is:
+- $G = 6.67430 \times 10^{-11} \, \text{m}^3/\text{kg}/\text{s}^2$ is the gravitational constant,
 
-$$
-U(r) = -\frac{G M_E m}{r}
-$$
+- $M = 5.972 \times 10^{24} \, \text{kg}$ is Earth’s mass,
 
-The escape velocity from a given distance \( r \) from Earth’s center is derived from setting total mechanical energy to zero:
+- $r$ is the distance from the payload to Earth's center.
 
-$$
-v_{\text{esc}} = \sqrt{\frac{2 G M_E}{r}}
-$$
-
-If the object’s speed exceeds this, it will escape Earth’s gravity.
-
-### Types of Trajectories
-
-The shape of the trajectory depends on the total specific mechanical energy \( \varepsilon \) of the object:
+This force causes a radial acceleration:
 
 $$
-\varepsilon = \frac{v^2}{2} - \frac{G M_E}{r}
+\vec{a} = -\frac{G M}{r^2} \hat{r}
 $$
 
-- If \( \varepsilon < 0 \): **Bound orbit** (circular or elliptical)
+pointing toward the center of Earth.
 
-- If \( \varepsilon = 0 \): **Parabolic trajectory** (escape at exactly escape velocity)
+### Total Mechanical Energy
 
-- If \( \varepsilon > 0 \): **Hyperbolic trajectory** (unbound escape)
-
-These relate directly to orbital shapes derived from conic sections in central-force problems.
-
-### Orbital Mechanics and Kepler’s Laws
-
-Kepler’s Laws describe planetary motion in bound orbits:
-
-1. Orbits are ellipses with Earth at one focus.
-
-2. The line joining the planet and Earth sweeps out equal areas in equal times.
-
-3. The square of the orbital period is proportional to the cube of the semi-major axis:
+The total mechanical energy $E$ of the payload combines kinetic and gravitational potential energy:
 
 $$
-T^2 \propto a^3
+E = \frac{1}{2} m v^2 - \frac{G M m}{r}
 $$
 
-For payloads near Earth, these laws apply to elliptical orbits under the assumption of two-body motion.
+The sign of $E$ determines the type of trajectory:
 
-## Equations of Motion
+- $E < 0$: elliptical orbit,
 
-To simulate the motion, we start from Newton’s Second Law in vector form:
+- $E = 0$: parabolic escape,
+
+- $E > 0$: hyperbolic escape.
+
+A circular orbit occurs when gravitational force exactly balances the centripetal force:
 
 $$
-\vec{a} = -\frac{G M_E}{r^3} \vec{r}
+v = \sqrt{\frac{G M}{r}}
 $$
 
-This second-order differential equation governs the position vector \( \vec{r}(t) \) over time.
+### Equations of Motion
 
-To solve numerically, we convert to a system of first-order differential equations. Let:
+To simulate how the payload moves after release, we need to describe how its position and velocity change over time due to Earth's gravity.
 
-- \( \vec{r} = (x, y) \)
+We model the payload's position in 2D space as a vector:
 
-- \( \vec{v} = \frac{d\vec{r}}{dt} = (v_x, v_y) \)
+$$
+\vec{r}(t) = \begin{bmatrix} x(t) \\ y(t) \end{bmatrix}
+$$
 
-Then the system becomes:
+This means the object has an $x$ and $y$ coordinate at each moment in time. Earth's center is fixed at the origin $(0, 0)$, so gravity always pulls the object toward that point.
+
+From Newton’s Second Law:
+
+$$
+\vec{F} = m \vec{a}
+$$
+
+And from Newton’s Law of Universal Gravitation:
+
+$$
+\vec{F}_{\text{gravity}} = -\frac{GMm}{r^2} \hat{r}
+$$
+
+Here:
+
+- $G$ is the gravitational constant,
+
+- $M$ is Earth’s mass,
+
+- $m$ is the payload’s mass,
+
+- $r$ is the **distance** from the payload to Earth’s center,
+
+- $\hat{r}$ is the **unit vector** pointing from the payload toward Earth’s center.
+
+The **unit vector** $\hat{r}$ tells us only the direction of gravity (not its strength). Since $\vec{r}$ is the position vector pointing from Earth’s center to the payload, the unit vector pointing **back** toward Earth is:
+
+$$
+\hat{r} = \frac{\vec{r}}{|\vec{r}|} = \frac{\vec{r}}{r}
+$$
+
+Substituting this into the force equation:
+
+$$
+\vec{F}_{\text{gravity}} = -\frac{GMm}{r^2} \cdot \frac{\vec{r}}{r} = -\frac{GMm}{r^3} \vec{r}
+$$
+
+Now apply Newton’s second law, $\vec{F} = m \vec{a}$:
+
+$$
+m \vec{a} = -\frac{GMm}{r^3} \vec{r}
+$$
+
+Divide both sides by $m$ to get acceleration:
+
+$$
+\vec{a} = \frac{d^2 \vec{r}}{dt^2} = -\frac{GM}{r^3} \vec{r}
+$$
+
+This is a vector equation — it tells us how the acceleration behaves based on the current position.
+
+To actually simulate this numerically, we write it in terms of $x$ and $y$.
+
+Since:
+
+$$
+r = \sqrt{x^2 + y^2}, \quad \vec{r} = \begin{bmatrix} x \\ y \end{bmatrix}
+$$
+
+we substitute into the acceleration formula:
+
+$$
+\frac{d^2 \vec{r}}{dt^2} = -\frac{GM}{(x^2 + y^2)^{3/2}} \begin{bmatrix} x \\ y \end{bmatrix}
+$$
+
+So in component form:
+
+$$
+\frac{d^2 x}{dt^2} = -\frac{GM x}{(x^2 + y^2)^{3/2}}, \quad 
+\frac{d^2 y}{dt^2} = -\frac{GM y}{(x^2 + y^2)^{3/2}}
+$$
+
+These two equations give the **acceleration** of the payload in each direction, based on its current position.
+
+
+#### Converting to First-Order System
+
+To simulate this with a computer, we convert the second-order differential equations into a system of **first-order equations** by introducing velocity:
+
+Let:
+
+$$
+v_x = \frac{dx}{dt}, \quad v_y = \frac{dy}{dt}
+$$
+
+Then we get:
+
+**Velocity equations (define position from velocity):**
 
 $$
 \frac{dx}{dt} = v_x, \quad \frac{dy}{dt} = v_y
 $$
 
+**Acceleration equations (define velocity from position):**
+
 $$
-\frac{dv_x}{dt} = -\frac{G M_E x}{(x^2 + y^2)^{3/2}}, \quad \frac{dv_y}{dt} = -\frac{G M_E y}{(x^2 + y^2)^{3/2}}
+\frac{dv_x}{dt} = -\frac{GM x}{(x^2 + y^2)^{3/2}}, \quad 
+\frac{dv_y}{dt} = -\frac{GM y}{(x^2 + y^2)^{3/2}}
 $$
 
-This system will be integrated numerically using Python in the next section.
+---
 
-## Assumptions and Simplifications
+### Numerical Integration
 
-To make the problem tractable, we adopt the following assumptions:
+These four equations are used to simulate the motion step by step in time using a numerical method such as:
 
-- The Earth is a perfect sphere with uniform mass.
+- **Euler’s method** (simple, but less accurate),
 
-- The atmosphere is neglected (vacuum conditions).
+- or **Runge-Kutta** (more accurate and stable).
 
-- Only Earth's gravity is considered (no third-body effects).
+At each small time interval $dt$, the process is:
 
-- Motion is planar (2D), with the Earth's center at the origin.
+1. Use the current $x$ and $y$ to compute acceleration.
 
-- The payload's mass is negligible compared to Earth (two-body approximation).
+2. Update $v_x$ and $v_y$ using the acceleration.
 
+3. Update $x$ and $y$ using the new velocity.
+
+4. Repeat.
+
+This step-by-step method lets us trace the full trajectory of the payload over time, depending on its initial position and velocity.
 
 ## Simulation
 
+The simulation uses a simple Euler integrator with time step Δt = 10 s over a total duration of 6 000 s. The payload is released from **500 km** altitude (  
+$$
+r_0 = R_\text{earth} + 500\,\text{km}
+$$  
+
+ with five different initial velocity vectors:
+
+- **Free Fall**: vₓ = 0, vᵧ = 0  
+
+- **Suborbital**: vₓ = 0, vᵧ = 5 000 m/s  
+
+- **Circular Orbit**: vₓ = 0, vᵧ ≃ √(GM/r₀) ≃ 7 600 m/s  
+
+- **Escape Velocity**: vₓ = 0, vᵧ ≃ √(2GM/r₀) ≃ 10 800 m/s  
+
+- **Mixed Vector**: vₓ = 3 000 m/s, vᵧ = 3 000 m/s  
+
+Below is the resulting plot (insert your generated figure here):
+
+![Payload trajectories from 500 km altitude](../../_pics/PayloadTrajectories2.png)
+
 You can try simulating yourself [here](https://colab.research.google.com/github/OlehVorobiov/solutions_repo/blob/main/docs/Interactives/PayloadTrajectorySimulation.ipynb)
 
-![Simulated Pendulum Period Measurements](../../_pics/PayloadTrajectories.png)
+---
 
-This simulation visualizes various trajectories of a payload released near Earth at an altitude of 300 km. Each path corresponds to a different set of initial velocity conditions, demonstrating how these affect the outcome:
+## Results and Interpretation
 
-- **Free fall (vx=0, vy=0):** The payload follows a straight downward path under gravity, crashing back into Earth.
+- **Free Fall**  
+  With zero initial speed, the payload drops straight down and impacts Earth rapidly (within a few minutes). This confirms the expected radial infall when no tangential velocity is provided.
 
-- **Circular orbit (vx=0, vy=7600 m/s):** The velocity is approximately equal to the required speed for a low Earth orbit, producing a stable circular trajectory.
+- **Suborbital (5 000 m/s)**  
+  The payload follows a ballistic arc: it climbs slightly, then falls back, reentering well before completing a full revolution. Since 5 000 m/s is below the circular speed at 500 km, the energy is negative (E < 0) but the angular momentum is too low to sustain orbit.
 
-- **Escape trajectory (vx=0, vy=11200 m/s):** This velocity matches Earth's escape velocity at 300 km altitude, causing the payload to escape Earth's gravity well.
+- **Circular Orbit (≈7 600 m/s)**  
+  At roughly √(GM/r₀), gravity exactly provides the centripetal force. The trajectory is nearly a perfect circle at constant radius r₀, illustrating a stable bound orbit (E < 0).
 
-- **Elliptical orbit (vx=0, vy=9000 m/s):** Higher than orbital speed but lower than escape velocity, resulting in a stretched elliptical orbit.
+- **Escape Velocity (≈10 800 m/s)**  
+  When v ≃ vₑₛc, the specific energy E ≃ 0, producing a parabolic escape path. The payload climbs indefinitely, slowing as it climbs, and would reach zero speed at infinite distance.
 
-- **Oblique trajectory (vx=3000, vy=3000 m/s):** With components in both axes, the payload follows a complex elliptical or suborbital path, depending on its total energy.
+- **Mixed Vector (3 000,3 000 m/s)**  
+  The resultant speed (~4 240 m/s) is below the circular threshold, so the path is an eccentric ellipse. However, its perigee dips below Earth's surface, causing reentry. This underscores how both magnitude and direction critically shape the orbit.
 
-All trajectories are computed using Newton’s law of universal gravitation with a time-stepped numerical method. The simulation helps illustrate how even small changes in velocity and direction can dramatically alter the payload’s fate—be it orbital insertion, reentry, or escape.
+---
 
+**Key takeaway:**  
+Small changes in initial velocity magnitude or direction at release altitude can switch the payload’s fate from immediate impact, to a stable orbit, or to escape. This highlights the precision required in satellite deployment and reentry planning.
 
-## Applications and Implications
-
-Understanding the trajectories of released payloads is critical for several areas of aerospace engineering and space mission planning:
-
-- **Satellite Deployment**: Precise velocity control is required to insert satellites into stable orbits. A small deviation may result in suborbital reentry or an unintended elliptical orbit.
-  
-- **Orbital Maneuvers**: Payloads transferred between orbits (e.g., from low Earth orbit to geostationary) follow elliptical transfer paths. These transitions rely on short, calculated bursts (impulses) to adjust velocity.
-
-- **Reentry Scenarios**: Controlled reentry missions (e.g., return capsules or deorbiting satellites) must carefully reduce velocity to avoid skipping off the atmosphere or burning up. Trajectory modeling helps define safe reentry corridors.
-
-- **Escape Missions**: Missions aiming to leave Earth’s gravity (e.g., interplanetary probes) must achieve escape velocity. The simulation illustrates how exceeding critical energy thresholds leads to hyperbolic escape paths.
-
-- **Space Debris Risk Assessment**: Modeling trajectories of malfunctioning or deorbited payloads helps predict impact zones or decay paths, crucial for safety and mitigation planning.
-
-These applications reveal how orbital mechanics and gravitational modeling directly influence mission success, cost, and safety.
 
 ## Conclusion
 
-This report analyzed the motion of a payload released near Earth under the influence of gravity. Using Newtonian mechanics, we derived the fundamental equations governing gravitational acceleration and related them to conic-section trajectory types.
+This study has shown how a payload released near Earth can follow dramatically different paths—impact, suborbital arc, bound orbit, or escape—depending on its initial velocity magnitude and direction. By modeling the motion with Newton’s law of gravitation and integrating the resulting first-order system numerically, we illustrated:
 
-A numerical simulation was conducted in Python to visualize the paths resulting from various initial conditions, clearly showing transitions between suborbital reentry, stable orbit, and escape. The results underscore the sensitivity of trajectories to initial velocity and direction, highlighting the importance of precise control in orbital mechanics.
+- **Free fall** when no tangential speed is provided.  
 
-Overall, this exercise not only provides a deeper understanding of celestial dynamics but also demonstrates the practical significance of trajectory modeling in real-world aerospace operations.
+- **Ballistic suborbital** trajectories when speed is insufficient for a full revolution.  
 
+- **Stable circular orbit** at the precise velocity where gravity supplies exactly the required centripetal force.  
+
+- **Parabolic escape** at the escape speed, marking the boundary between bound and unbound motion.  
+
+- **Eccentric ellipse** for off-axis or intermediate speeds, which may intersect the atmosphere if perigee dips too low.
+
+The sharp sensitivity of the outcome to even small changes in initial conditions underscores the precise control needed in real mission scenarios—whether deploying satellites, planning reentry, or aiming for interplanetary escape. Future work could refine this model by adding atmospheric drag, higher-order integration (Runge-Kutta), or 3D dynamics, but the core lesson remains: in orbital mechanics, a small delta-v can change everything.  
